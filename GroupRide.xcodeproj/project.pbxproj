@@ -8,12 +8,41 @@
 
 /* Begin PBXBuildFile section */
 		572BFD459580A1F2FDA8B60F /* Pods_GroupRide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697EAC55A0DE77513D7DD311 /* Pods_GroupRide.framework */; };
+		7002B6352111094A00DC0979 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7002B6342111094A00DC0979 /* CustomTableViewCell.swift */; };
 		7012D33D20BE060400CB1252 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7012D33C20BE060300CB1252 /* CalendarViewController.swift */; };
 		7012D34820BE554900CB1252 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7012D34720BE554900CB1252 /* CustomCell.swift */; };
+		703251282113EE20005E6EB1 /* EditProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703251272113EE20005E6EB1 /* EditProfileTableViewCell.swift */; };
+		7032512A21141366005E6EB1 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7032512921141366005E6EB1 /* PhotoViewController.swift */; };
+		7032512C21141664005E6EB1 /* CustomModalAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7032512B21141664005E6EB1 /* CustomModalAnimator.swift */; };
+		7032512E21142E45005E6EB1 /* RidesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7032512D21142E45005E6EB1 /* RidesTableViewController.swift */; };
+		7032513021142E4D005E6EB1 /* RideDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7032512F21142E4D005E6EB1 /* RideDetailViewController.swift */; };
+		7069FDCF211BF462002F4C3B /* RideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7069FDCE211BF462002F4C3B /* RideTableViewCell.swift */; };
+		7069FDDB211C43C1002F4C3B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7069FDDA211C43C1002F4C3B /* SignUpViewController.swift */; };
+		7069FDDD211C43F2002F4C3B /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7069FDDC211C43F2002F4C3B /* LogInViewController.swift */; };
+		7069FDDF211C497D002F4C3B /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7069FDDE211C497D002F4C3B /* AuthenticationManager.swift */; };
+		7069FDE1211C49FF002F4C3B /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7069FDE0211C49FF002F4C3B /* Users.swift */; };
+		709B8B3F211C521A00B62FA2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 709B8B3E211C521A00B62FA2 /* GoogleService-Info.plist */; };
 		70A48D1A20CF5B8200F5FCEB /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A48D1920CF5B8200F5FCEB /* EditProfileViewController.swift */; };
-		70A48D2020CF97C300F5FCEB /* GroupRide.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70A48D1E20CF97C300F5FCEB /* GroupRide.xcdatamodeld */; };
-		70AD7B3420CF9D060052C11F /* Profile+CoreDataProperties copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AD7B3220CF9D060052C11F /* Profile+CoreDataProperties copy.swift */; };
-		70AD7B3520CF9D060052C11F /* Profile+CoreDataClass copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AD7B3320CF9D060052C11F /* Profile+CoreDataClass copy.swift */; };
+		70AD4222211CE17E00BE069A /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AD421A211CE17E00BE069A /* GoogleUtilities.framework */; };
+		70AD4223211CE17E00BE069A /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AD421B211CE17E00BE069A /* GoogleAppMeasurement.framework */; };
+		70AD4224211CE17E00BE069A /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AD421C211CE17E00BE069A /* FirebaseAnalytics.framework */; };
+		70AD4225211CE17E00BE069A /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AD421D211CE17E00BE069A /* nanopb.framework */; };
+		70AD4226211CE17E00BE069A /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AD421E211CE17E00BE069A /* FirebaseCoreDiagnostics.framework */; };
+		70AD4227211CE17E00BE069A /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AD421F211CE17E00BE069A /* FirebaseInstanceID.framework */; };
+		70AD4228211CE17E00BE069A /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AD4220211CE17E00BE069A /* FirebaseCore.framework */; };
+		70AD4229211CE17E00BE069A /* MeasurementNanoPB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AD4221211CE17E00BE069A /* MeasurementNanoPB.framework */; };
+		70AD4231211CE44500BE069A /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AD422F211CE44500BE069A /* FirebaseAuth.framework */; };
+		70AD4232211CE44500BE069A /* GTMSessionFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AD4230211CE44500BE069A /* GTMSessionFetcher.framework */; };
+		70AD4235211CE45300BE069A /* leveldb-library.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AD4233211CE45300BE069A /* leveldb-library.framework */; };
+		70AD4236211CE45300BE069A /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AD4234211CE45300BE069A /* FirebaseDatabase.framework */; };
+		70AD423E211CE47900BE069A /* Protobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AD4237211CE47800BE069A /* Protobuf.framework */; };
+		70AD423F211CE47900BE069A /* gRPC-Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AD4238211CE47800BE069A /* gRPC-Core.framework */; };
+		70AD4240211CE47900BE069A /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AD4239211CE47800BE069A /* BoringSSL.framework */; };
+		70AD4241211CE47900BE069A /* FirebaseFirestore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AD423A211CE47800BE069A /* FirebaseFirestore.framework */; };
+		70AD4242211CE47900BE069A /* gRPC-ProtoRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AD423B211CE47800BE069A /* gRPC-ProtoRPC.framework */; };
+		70AD4243211CE47900BE069A /* gRPC-RxLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AD423C211CE47800BE069A /* gRPC-RxLibrary.framework */; };
+		70AD4244211CE47900BE069A /* gRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AD423D211CE47900BE069A /* gRPC.framework */; };
+		70AD4246211CE4B700BE069A /* gRPCCertificates.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 70AD4245211CE4B700BE069A /* gRPCCertificates.bundle */; };
 		70DDFC6A20A38F2100AEB96F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DDFC6920A38F2100AEB96F /* AppDelegate.swift */; };
 		70DDFC6C20A38F2100AEB96F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DDFC6B20A38F2100AEB96F /* MapViewController.swift */; };
 		70DDFC6E20A38F2100AEB96F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DDFC6D20A38F2100AEB96F /* ProfileViewController.swift */; };
@@ -25,12 +54,63 @@
 /* Begin PBXFileReference section */
 		577604A46B1F79B914BA5313 /* Pods-GroupRide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupRide.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupRide/Pods-GroupRide.release.xcconfig"; sourceTree = "<group>"; };
 		697EAC55A0DE77513D7DD311 /* Pods_GroupRide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupRide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7002B6342111094A00DC0979 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomTableViewCell.swift; path = "GroupRide/Custom Classes/CustomTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		7006C9E1211CEAEB00506EAF /* GroupRide-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "GroupRide-Bridging-Header.h"; path = "GroupRide/GroupRide-Bridging-Header.h"; sourceTree = "<group>"; };
 		7012D33C20BE060300CB1252 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		7012D34720BE554900CB1252 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomCell.swift; path = GroupRide/CustomCell.swift; sourceTree = SOURCE_ROOT; };
+		7012D34720BE554900CB1252 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomCell.swift; path = "GroupRide/Custom Classes/CustomCell.swift"; sourceTree = SOURCE_ROOT; };
+		7026A4EA211CEBDB0036544B /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		703251272113EE20005E6EB1 /* EditProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditProfileTableViewCell.swift; path = "GroupRide/Custom Classes/EditProfileTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		7032512921141366005E6EB1 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		7032512B21141664005E6EB1 /* CustomModalAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModalAnimator.swift; sourceTree = "<group>"; };
+		7032512D21142E45005E6EB1 /* RidesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RidesTableViewController.swift; sourceTree = "<group>"; };
+		7032512F21142E4D005E6EB1 /* RideDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideDetailViewController.swift; sourceTree = "<group>"; };
+		70521CF9211CDAC4008D3B3E /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = ../../../Desktop/Firebase/Analytics/GoogleAppMeasurement.framework; sourceTree = "<group>"; };
+		70521CFA211CDAC4008D3B3E /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = ../../../Desktop/Firebase/Analytics/FirebaseInstanceID.framework; sourceTree = "<group>"; };
+		70521CFB211CDAC4008D3B3E /* nanopb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = nanopb.framework; path = ../../../Desktop/Firebase/Analytics/nanopb.framework; sourceTree = "<group>"; };
+		70521CFC211CDAC5008D3B3E /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = ../../../Desktop/Firebase/Analytics/FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		70521CFD211CDAC5008D3B3E /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCore.framework; path = ../../../Desktop/Firebase/Analytics/FirebaseCore.framework; sourceTree = "<group>"; };
+		70521CFE211CDAC5008D3B3E /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCoreDiagnostics.framework; path = ../../../Desktop/Firebase/Analytics/FirebaseCoreDiagnostics.framework; sourceTree = "<group>"; };
+		70521CFF211CDAC5008D3B3E /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = ../../../Desktop/Firebase/Analytics/GoogleUtilities.framework; sourceTree = "<group>"; };
+		70521D00211CDAC5008D3B3E /* MeasurementNanoPB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MeasurementNanoPB.framework; path = ../../../Desktop/Firebase/Analytics/MeasurementNanoPB.framework; sourceTree = "<group>"; };
+		7069FDCE211BF462002F4C3B /* RideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RideTableViewCell.swift; path = "GroupRide/Custom Classes/RideTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		7069FDDA211C43C1002F4C3B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		7069FDDC211C43F2002F4C3B /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		7069FDDE211C497D002F4C3B /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		7069FDE0211C49FF002F4C3B /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		709B8B3E211C521A00B62FA2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		70A48D1920CF5B8200F5FCEB /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditProfileViewController.swift; path = "GroupRide/View Controllers/EditProfileViewController.swift"; sourceTree = SOURCE_ROOT; };
-		70A48D1F20CF97C300F5FCEB /* GroupRide.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GroupRide.xcdatamodel; sourceTree = "<group>"; };
-		70AD7B3220CF9D060052C11F /* Profile+CoreDataProperties copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Profile+CoreDataProperties copy.swift"; sourceTree = "<group>"; };
-		70AD7B3320CF9D060052C11F /* Profile+CoreDataClass copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Profile+CoreDataClass copy.swift"; sourceTree = "<group>"; };
+		70AD421A211CE17E00BE069A /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = GroupRide/Firebase/GoogleUtilities.framework; sourceTree = "<group>"; };
+		70AD421B211CE17E00BE069A /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = GroupRide/Firebase/GoogleAppMeasurement.framework; sourceTree = "<group>"; };
+		70AD421C211CE17E00BE069A /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = GroupRide/Firebase/FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		70AD421D211CE17E00BE069A /* nanopb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = nanopb.framework; path = GroupRide/Firebase/nanopb.framework; sourceTree = "<group>"; };
+		70AD421E211CE17E00BE069A /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCoreDiagnostics.framework; path = GroupRide/Firebase/FirebaseCoreDiagnostics.framework; sourceTree = "<group>"; };
+		70AD421F211CE17E00BE069A /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = GroupRide/Firebase/FirebaseInstanceID.framework; sourceTree = "<group>"; };
+		70AD4220211CE17E00BE069A /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCore.framework; path = GroupRide/Firebase/FirebaseCore.framework; sourceTree = "<group>"; };
+		70AD4221211CE17E00BE069A /* MeasurementNanoPB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MeasurementNanoPB.framework; path = GroupRide/Firebase/MeasurementNanoPB.framework; sourceTree = "<group>"; };
+		70AD422F211CE44500BE069A /* FirebaseAuth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAuth.framework; path = GroupRide/Firebase/Auth/FirebaseAuth.framework; sourceTree = "<group>"; };
+		70AD4230211CE44500BE069A /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GTMSessionFetcher.framework; path = GroupRide/Firebase/Auth/GTMSessionFetcher.framework; sourceTree = "<group>"; };
+		70AD4233211CE45300BE069A /* leveldb-library.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "leveldb-library.framework"; path = "GroupRide/Firebase/Database/leveldb-library.framework"; sourceTree = "<group>"; };
+		70AD4234211CE45300BE069A /* FirebaseDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseDatabase.framework; path = GroupRide/Firebase/Database/FirebaseDatabase.framework; sourceTree = "<group>"; };
+		70AD4237211CE47800BE069A /* Protobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Protobuf.framework; path = GroupRide/Firebase/Firestore/Protobuf.framework; sourceTree = "<group>"; };
+		70AD4238211CE47800BE069A /* gRPC-Core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "gRPC-Core.framework"; path = "GroupRide/Firebase/Firestore/gRPC-Core.framework"; sourceTree = "<group>"; };
+		70AD4239211CE47800BE069A /* BoringSSL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoringSSL.framework; path = GroupRide/Firebase/Firestore/BoringSSL.framework; sourceTree = "<group>"; };
+		70AD423A211CE47800BE069A /* FirebaseFirestore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseFirestore.framework; path = GroupRide/Firebase/Firestore/FirebaseFirestore.framework; sourceTree = "<group>"; };
+		70AD423B211CE47800BE069A /* gRPC-ProtoRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "gRPC-ProtoRPC.framework"; path = "GroupRide/Firebase/Firestore/gRPC-ProtoRPC.framework"; sourceTree = "<group>"; };
+		70AD423C211CE47800BE069A /* gRPC-RxLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "gRPC-RxLibrary.framework"; path = "GroupRide/Firebase/Firestore/gRPC-RxLibrary.framework"; sourceTree = "<group>"; };
+		70AD423D211CE47900BE069A /* gRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gRPC.framework; path = GroupRide/Firebase/Firestore/gRPC.framework; sourceTree = "<group>"; };
+		70AD4245211CE4B700BE069A /* gRPCCertificates.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = gRPCCertificates.bundle; sourceTree = "<group>"; };
+		70AD4249211CE80C00BE069A /* Firebase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Firebase.h; path = GroupRide/Firebase.h; sourceTree = "<group>"; };
+		70B130B1211CD68F00D99140 /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GTMSessionFetcher.framework; path = ../../../Desktop/Firebase/Auth/GTMSessionFetcher.framework; sourceTree = "<group>"; };
+		70B130B2211CD68F00D99140 /* FirebaseAuth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAuth.framework; path = ../../../Desktop/Firebase/Auth/FirebaseAuth.framework; sourceTree = "<group>"; };
+		70B130B6211CD83B00D99140 /* leveldb-library.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "leveldb-library.framework"; path = "../../../Desktop/Firebase/Database/leveldb-library.framework"; sourceTree = "<group>"; };
+		70B130B7211CD83B00D99140 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseDatabase.framework; path = ../../../Desktop/Firebase/Database/FirebaseDatabase.framework; sourceTree = "<group>"; };
+		70B130BA211CD87400D99140 /* Protobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Protobuf.framework; path = ../../../Desktop/Firebase/Firestore/Protobuf.framework; sourceTree = "<group>"; };
+		70B130BB211CD87400D99140 /* BoringSSL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoringSSL.framework; path = ../../../Desktop/Firebase/Firestore/BoringSSL.framework; sourceTree = "<group>"; };
+		70B130BC211CD87500D99140 /* gRPC-RxLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "gRPC-RxLibrary.framework"; path = "../../../Desktop/Firebase/Firestore/gRPC-RxLibrary.framework"; sourceTree = "<group>"; };
+		70B130BD211CD87500D99140 /* FirebaseFirestore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseFirestore.framework; path = ../../../Desktop/Firebase/Firestore/FirebaseFirestore.framework; sourceTree = "<group>"; };
+		70B130BE211CD87500D99140 /* gRPC-Core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "gRPC-Core.framework"; path = "../../../Desktop/Firebase/Firestore/gRPC-Core.framework"; sourceTree = "<group>"; };
+		70B130BF211CD87500D99140 /* gRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gRPC.framework; path = ../../../Desktop/Firebase/Firestore/gRPC.framework; sourceTree = "<group>"; };
+		70B130C0211CD87500D99140 /* gRPC-ProtoRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "gRPC-ProtoRPC.framework"; path = "../../../Desktop/Firebase/Firestore/gRPC-ProtoRPC.framework"; sourceTree = "<group>"; };
 		70DDFC6620A38F2100AEB96F /* GroupRide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupRide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70DDFC6920A38F2100AEB96F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70DDFC6B20A38F2100AEB96F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +127,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70AD423E211CE47900BE069A /* Protobuf.framework in Frameworks */,
+				70AD423F211CE47900BE069A /* gRPC-Core.framework in Frameworks */,
+				70AD4240211CE47900BE069A /* BoringSSL.framework in Frameworks */,
+				70AD4241211CE47900BE069A /* FirebaseFirestore.framework in Frameworks */,
+				70AD4242211CE47900BE069A /* gRPC-ProtoRPC.framework in Frameworks */,
+				70AD4243211CE47900BE069A /* gRPC-RxLibrary.framework in Frameworks */,
+				70AD4244211CE47900BE069A /* gRPC.framework in Frameworks */,
+				70AD4235211CE45300BE069A /* leveldb-library.framework in Frameworks */,
+				70AD4236211CE45300BE069A /* FirebaseDatabase.framework in Frameworks */,
+				70AD4231211CE44500BE069A /* FirebaseAuth.framework in Frameworks */,
+				70AD4232211CE44500BE069A /* GTMSessionFetcher.framework in Frameworks */,
+				70AD4222211CE17E00BE069A /* GoogleUtilities.framework in Frameworks */,
+				70AD4223211CE17E00BE069A /* GoogleAppMeasurement.framework in Frameworks */,
+				70AD4224211CE17E00BE069A /* FirebaseAnalytics.framework in Frameworks */,
+				70AD4225211CE17E00BE069A /* nanopb.framework in Frameworks */,
+				70AD4226211CE17E00BE069A /* FirebaseCoreDiagnostics.framework in Frameworks */,
+				70AD4227211CE17E00BE069A /* FirebaseInstanceID.framework in Frameworks */,
+				70AD4228211CE17E00BE069A /* FirebaseCore.framework in Frameworks */,
+				70AD4229211CE17E00BE069A /* MeasurementNanoPB.framework in Frameworks */,
 				572BFD459580A1F2FDA8B60F /* Pods_GroupRide.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,13 +162,30 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		7002B6362111095300DC0979 /* Custom Classes */ = {
+			isa = PBXGroup;
+			children = (
+				7069FDCE211BF462002F4C3B /* RideTableViewCell.swift */,
+				7032512B21141664005E6EB1 /* CustomModalAnimator.swift */,
+				7012D34720BE554900CB1252 /* CustomCell.swift */,
+				7002B6342111094A00DC0979 /* CustomTableViewCell.swift */,
+				703251272113EE20005E6EB1 /* EditProfileTableViewCell.swift */,
+			);
+			path = "Custom Classes";
+			sourceTree = "<group>";
+		};
 		7012D34520BE1C3800CB1252 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				70A48D1920CF5B8200F5FCEB /* EditProfileViewController.swift */,
+				7069FDDC211C43F2002F4C3B /* LogInViewController.swift */,
+				7069FDDA211C43C1002F4C3B /* SignUpViewController.swift */,
 				70DDFC6B20A38F2100AEB96F /* MapViewController.swift */,
 				7012D33C20BE060300CB1252 /* CalendarViewController.swift */,
+				7032512D21142E45005E6EB1 /* RidesTableViewController.swift */,
+				7032512F21142E4D005E6EB1 /* RideDetailViewController.swift */,
 				70DDFC6D20A38F2100AEB96F /* ProfileViewController.swift */,
+				70A48D1920CF5B8200F5FCEB /* EditProfileViewController.swift */,
+				7032512921141366005E6EB1 /* PhotoViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -87,6 +203,10 @@
 			isa = PBXGroup;
 			children = (
 				70DDFC6820A38F2100AEB96F /* GroupRide */,
+				7026A4EA211CEBDB0036544B /* module.modulemap */,
+				70AD4249211CE80C00BE069A /* Firebase.h */,
+				7006C9E1211CEAEB00506EAF /* GroupRide-Bridging-Header.h */,
+				70AD4245211CE4B700BE069A /* gRPCCertificates.bundle */,
 				70DDFC6720A38F2100AEB96F /* Products */,
 				00D1948898825A6661A8705A /* Pods */,
 				FE937205F051B9A78D8EC04D /* Frameworks */,
@@ -105,29 +225,59 @@
 			isa = PBXGroup;
 			children = (
 				70DDFC7720A38F2100AEB96F /* Info.plist */,
+				709B8B3E211C521A00B62FA2 /* GoogleService-Info.plist */,
+				70DDFC6920A38F2100AEB96F /* AppDelegate.swift */,
+				7069FDE0211C49FF002F4C3B /* Users.swift */,
+				7069FDDE211C497D002F4C3B /* AuthenticationManager.swift */,
+				70DDFC7220A38F2100AEB96F /* Assets.xcassets */,
 				7012D34620BE1C5500CB1252 /* Storyboards */,
 				7012D34520BE1C3800CB1252 /* View Controllers */,
-				70EB815E20CFBFF9005A9348 /* Core Data */,
-				7012D34720BE554900CB1252 /* CustomCell.swift */,
-				70DDFC6920A38F2100AEB96F /* AppDelegate.swift */,
-				70DDFC7220A38F2100AEB96F /* Assets.xcassets */,
+				7002B6362111095300DC0979 /* Custom Classes */,
 			);
 			path = GroupRide;
-			sourceTree = "<group>";
-		};
-		70EB815E20CFBFF9005A9348 /* Core Data */ = {
-			isa = PBXGroup;
-			children = (
-				70AD7B3220CF9D060052C11F /* Profile+CoreDataProperties copy.swift */,
-				70AD7B3320CF9D060052C11F /* Profile+CoreDataClass copy.swift */,
-				70A48D1E20CF97C300F5FCEB /* GroupRide.xcdatamodeld */,
-			);
-			path = "Core Data";
 			sourceTree = "<group>";
 		};
 		FE937205F051B9A78D8EC04D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				70AD4239211CE47800BE069A /* BoringSSL.framework */,
+				70AD423A211CE47800BE069A /* FirebaseFirestore.framework */,
+				70AD4238211CE47800BE069A /* gRPC-Core.framework */,
+				70AD423B211CE47800BE069A /* gRPC-ProtoRPC.framework */,
+				70AD423C211CE47800BE069A /* gRPC-RxLibrary.framework */,
+				70AD423D211CE47900BE069A /* gRPC.framework */,
+				70AD4237211CE47800BE069A /* Protobuf.framework */,
+				70AD4234211CE45300BE069A /* FirebaseDatabase.framework */,
+				70AD4233211CE45300BE069A /* leveldb-library.framework */,
+				70AD422F211CE44500BE069A /* FirebaseAuth.framework */,
+				70AD4230211CE44500BE069A /* GTMSessionFetcher.framework */,
+				70521CFC211CDAC5008D3B3E /* FirebaseAnalytics.framework */,
+				70521CFD211CDAC5008D3B3E /* FirebaseCore.framework */,
+				70AD4220211CE17E00BE069A /* FirebaseCore.framework */,
+				70521CFE211CDAC5008D3B3E /* FirebaseCoreDiagnostics.framework */,
+				70521CFA211CDAC4008D3B3E /* FirebaseInstanceID.framework */,
+				70AD421C211CE17E00BE069A /* FirebaseAnalytics.framework */,
+				70AD421E211CE17E00BE069A /* FirebaseCoreDiagnostics.framework */,
+				70AD421F211CE17E00BE069A /* FirebaseInstanceID.framework */,
+				70521CF9211CDAC4008D3B3E /* GoogleAppMeasurement.framework */,
+				70AD421B211CE17E00BE069A /* GoogleAppMeasurement.framework */,
+				70521CFF211CDAC5008D3B3E /* GoogleUtilities.framework */,
+				70521D00211CDAC5008D3B3E /* MeasurementNanoPB.framework */,
+				70AD4221211CE17E00BE069A /* MeasurementNanoPB.framework */,
+				70521CFB211CDAC4008D3B3E /* nanopb.framework */,
+				70AD421A211CE17E00BE069A /* GoogleUtilities.framework */,
+				70AD421D211CE17E00BE069A /* nanopb.framework */,
+				70B130BB211CD87400D99140 /* BoringSSL.framework */,
+				70B130BD211CD87500D99140 /* FirebaseFirestore.framework */,
+				70B130BE211CD87500D99140 /* gRPC-Core.framework */,
+				70B130C0211CD87500D99140 /* gRPC-ProtoRPC.framework */,
+				70B130BC211CD87500D99140 /* gRPC-RxLibrary.framework */,
+				70B130BF211CD87500D99140 /* gRPC.framework */,
+				70B130BA211CD87400D99140 /* Protobuf.framework */,
+				70B130B7211CD83B00D99140 /* FirebaseDatabase.framework */,
+				70B130B6211CD83B00D99140 /* leveldb-library.framework */,
+				70B130B2211CD68F00D99140 /* FirebaseAuth.framework */,
+				70B130B1211CD68F00D99140 /* GTMSessionFetcher.framework */,
 				697EAC55A0DE77513D7DD311 /* Pods_GroupRide.framework */,
 			);
 			name = Frameworks;
@@ -168,6 +318,7 @@
 				TargetAttributes = {
 					70DDFC6520A38F2100AEB96F = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -196,8 +347,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				70DDFC7620A38F2100AEB96F /* LaunchScreen.storyboard in Resources */,
+				709B8B3F211C521A00B62FA2 /* GoogleService-Info.plist in Resources */,
 				70DDFC7320A38F2100AEB96F /* Assets.xcassets in Resources */,
 				70DDFC7120A38F2100AEB96F /* Main.storyboard in Resources */,
+				70AD4246211CE4B700BE069A /* gRPCCertificates.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,14 +419,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				7012D33D20BE060400CB1252 /* CalendarViewController.swift in Sources */,
-				70A48D2020CF97C300F5FCEB /* GroupRide.xcdatamodeld in Sources */,
-				70AD7B3520CF9D060052C11F /* Profile+CoreDataClass copy.swift in Sources */,
+				7069FDDF211C497D002F4C3B /* AuthenticationManager.swift in Sources */,
 				70DDFC6E20A38F2100AEB96F /* ProfileViewController.swift in Sources */,
 				70A48D1A20CF5B8200F5FCEB /* EditProfileViewController.swift in Sources */,
+				7032512E21142E45005E6EB1 /* RidesTableViewController.swift in Sources */,
+				703251282113EE20005E6EB1 /* EditProfileTableViewCell.swift in Sources */,
+				7002B6352111094A00DC0979 /* CustomTableViewCell.swift in Sources */,
+				7032512C21141664005E6EB1 /* CustomModalAnimator.swift in Sources */,
+				7032513021142E4D005E6EB1 /* RideDetailViewController.swift in Sources */,
+				7069FDE1211C49FF002F4C3B /* Users.swift in Sources */,
+				7069FDDD211C43F2002F4C3B /* LogInViewController.swift in Sources */,
+				7032512A21141366005E6EB1 /* PhotoViewController.swift in Sources */,
+				7069FDDB211C43C1002F4C3B /* SignUpViewController.swift in Sources */,
 				7012D34820BE554900CB1252 /* CustomCell.swift in Sources */,
 				70DDFC6A20A38F2100AEB96F /* AppDelegate.swift in Sources */,
 				70DDFC6C20A38F2100AEB96F /* MapViewController.swift in Sources */,
-				70AD7B3420CF9D060052C11F /* Profile+CoreDataProperties copy.swift in Sources */,
+				7069FDCF211BF462002F4C3B /* RideTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,11 +509,14 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/Pods/**";
+				"HEADER_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/$(PROJECT_NAME)";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "$(PROJECT_DIR)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -400,9 +564,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/Pods/**";
+				"HEADER_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/$(PROJECT_NAME)";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				SDKROOT = iphoneos;
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "$(PROJECT_DIR)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -413,12 +580,70 @@
 			baseConfigurationReference = D2C964DBD3970FDED55DA1A6 /* Pods-GroupRide.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 98PLLV5J2S;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GroupRide/Firebase",
+					"$(PROJECT_DIR)/GroupRide/Firebase/Auth",
+					"$(PROJECT_DIR)/GroupRide/Firebase/Database",
+					"$(PROJECT_DIR)/GroupRide/Firebase/Firestore",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/leveldb-library/include",
+				);
 				INFOPLIST_FILE = GroupRide/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				"OTHER_LDFLAGS[arch=*]" = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreImage\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"GoogleMaps\"",
+					"-framework",
+					"\"GoogleMapsBase\"",
+					"-framework",
+					"\"GoogleMapsCore\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"JTAppleCalendar\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.krystaarwen.GroupRide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -429,12 +654,29 @@
 			baseConfigurationReference = 577604A46B1F79B914BA5313 /* Pods-GroupRide.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 98PLLV5J2S;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GroupRide/Firebase",
+					"$(PROJECT_DIR)/GroupRide/Firebase/Auth",
+					"$(PROJECT_DIR)/GroupRide/Firebase/Database",
+					"$(PROJECT_DIR)/GroupRide/Firebase/Firestore",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Firebase/CoreOnly/Sources",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/leveldb-library/include",
+				);
 				INFOPLIST_FILE = GroupRide/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.krystaarwen.GroupRide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/$(PROJECT_NAME)/Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -462,19 +704,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		70A48D1E20CF97C300F5FCEB /* GroupRide.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				70A48D1F20CF97C300F5FCEB /* GroupRide.xcdatamodel */,
-			);
-			currentVersion = 70A48D1F20CF97C300F5FCEB /* GroupRide.xcdatamodel */;
-			path = GroupRide.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 70DDFC5E20A38F2100AEB96F /* Project object */;
 }

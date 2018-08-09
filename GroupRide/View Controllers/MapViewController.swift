@@ -12,9 +12,11 @@ import GoogleMaps
 class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: GMSMapView!
-    @IBOutlet weak var locationSwitch: UISwitch!
+    @IBOutlet weak var locationButton: UIButton!
+    @IBOutlet weak var buttonTopConstraint: NSLayoutConstraint!
     
     private let locationManager = CLLocationManager()
+    let userDefaultsKey = "TrackingLocation"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +24,25 @@ class MapViewController: UIViewController {
         //Reports user location
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
+        
+        //Add gesture recognizer to view controller
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        //Round button
+        locationButton.layer.cornerRadius = 5
+        locationButton.clipsToBounds = true
+        locationButton.contentEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
+        
+        //Set title
+        if trackingLocation() {
+            locationButton.setTitle("Track Location", for: .normal)
+        } else {
+            locationButton.setTitle("Tracking Location", for: .normal)
+        }
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,14 +50,20 @@ class MapViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func locationTrackingChanged(_ sender: UISwitch) {
-        if locationSwitch.isOn {
+    @IBAction func trackLocationTapped(_ sender: UIButton) {
+        sender.pulse()
+        
+        if !trackingLocation() {
             checkLocationTrackingAuthorization(sender: sender)
+        } else {
+            locationButton.setTitle("Track Location", for: .normal)
+            UserDefaults.standard.set(false, forKey: userDefaultsKey)
         }
+        
     }
     
     //Show notification to turn location tracking on
-    func showLocationAlert(sender: UISwitch) {
+    func showLocationAlert(sender: UIButton) {
         let alertController = UIAlertController(title: "Location Tracking", message: "To track your ride, you must enable location tracking in Settings", preferredStyle: .alert)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (alert) in
@@ -58,20 +85,54 @@ class MapViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    func checkLocationTrackingAuthorization(sender: UISwitch) {
+    func checkLocationTrackingAuthorization(sender: UIButton) {
         if CLLocationManager.locationServicesEnabled() {
             switch CLLocationManager.authorizationStatus() {
             case .notDetermined, .restricted, .denied:
                 print("No access")
                 showLocationAlert(sender: sender)
-                locationSwitch.setOn(false, animated: true)
                 
             case .authorizedAlways, .authorizedWhenInUse:
                 print("Access")
+                locationButton.setTitle("Tracking Location", for: .normal)
+                UserDefaults.standard.set(true, forKey: userDefaultsKey)
             }
         } else {
             print("Location services are not enabled")
         }
+    }
+    
+    @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.right:
+                break
+            case UISwipeGestureRecognizerDirection.left:
+                self.tabBarController
+            default:
+                break
+            }
+        }
+    }
+    
+    func trackingLocation() -> Bool {
+        return UserDefaults.standard.bool(forKey: userDefaultsKey)
+    }
+}
+
+extension UIButton {
+    
+    func pulse() {
+        //Add pulse action
+        let pulse = CASpringAnimation(keyPath: "transform.scale")
+        pulse.duration = 0.3
+        pulse.fromValue = 0.97
+        pulse.toValue = 1.0
+        pulse.autoreverses = true
+        pulse.repeatCount = 1
+        pulse.initialVelocity = 0.3
+        pulse.damping = 1.0
+        layer.add(pulse, forKey: nil)
     }
 }
 

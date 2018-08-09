@@ -7,59 +7,35 @@
 //
 
 import UIKit
-import CoreData
 
-class ProfileViewController: UIViewController, NSFetchedResultsControllerDelegate {
-    var profiles = [Profile]()
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate {
+
+    @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var profileTableView: UITableView!
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var rideLabel: UILabel!
-    @IBOutlet weak var bikeLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    
-    
-    //Create fetched results controller object
-    var fetchedResultsController: NSFetchedResultsController<Profile>?
-    var blockOperations: [BlockOperation] = []
+    let titles = ["Name", "Username", "Ride", "Bike", "Description"]
+    var descriptions: [String]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        let managedContext = appDelegate.persistentContainer.viewContext
-//        let indexPath = IndexPath(row: 1, section: 0)
-//        
-//        //Get all Person objects and sort by first name
-//        let fetchRequest = NSFetchRequest<Profile>(entityName: "Profile")
-//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-//        
-//        //Create results controller and pass request to it
-//        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedContext, sectionNameKeyPath: nil, cacheName: "PersonsCache")
-//        fetchedResultsController?.delegate = self
-//        
-//        do {
-//            try fetchedResultsController?.performFetch()
-//        } catch {
-//            fatalError("Unable to fetch: \(error)")
-//        }
+        //Load profile
+        updateProfile()
         
-        //Check if there is a saved profile and update labels if there is
-        if checkEntity() {
-            let userDefaults = UserDefaults.standard
-
-            let name = userDefaults.object(forKey: "Name") as? String
-            let username = userDefaults.object(forKey: "Username") as? String
-            let description = userDefaults.object(forKey: "Description") as? String
-            let bike = userDefaults.object(forKey: "Bike") as? String
-            let ride = userDefaults.object(forKey: "Ride") as? String
-            
-            nameLabel.text = name
-            usernameLabel.text = username
-            descriptionLabel.text = description
-            bikeLabel.text = bike
-            rideLabel.text = ride
-        }
+        //Trim profile picture
+        profilePicture.layer.cornerRadius = profilePicture.frame.height / 2.0
+        profilePicture.clipsToBounds = true
+        
+        //Add gesture recognizer to image view
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognezer:)))
+        profilePicture.isUserInteractionEnabled = true
+        profilePicture.addGestureRecognizer(tapGestureRecognizer)
+        
+        //Set up table view
+        profileTableView.tableFooterView = UIView()
+        
+        profileTableView.delegate = self
+        profileTableView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,45 +43,98 @@ class ProfileViewController: UIViewController, NSFetchedResultsControllerDelegat
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if checkEntity() {
-            let userDefaults = UserDefaults.standard
-            
-            let name = userDefaults.object(forKey: "Name") as? String
-            let username = userDefaults.object(forKey: "Username") as? String
-            let description = userDefaults.object(forKey: "Description") as? String
-            let bike = userDefaults.object(forKey: "Bike") as? String
-            let ride = userDefaults.object(forKey: "Ride") as? String
-            
-            nameLabel.text = name
-            usernameLabel.text = username
-            descriptionLabel.text = description
-            bikeLabel.text = bike
-            rideLabel.text = ride
+        updateProfile()
+    }
+    
+    //Functions for showing image full screen
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowImageFullScreen" {
+            let toViewController = segue.destination as UIViewController
+            toViewController.transitioningDelegate = self
         }
+    }
+    
+    @objc func imageTapped(tapGestureRecognezer: UITapGestureRecognizer) {
+        self.performSegue(withIdentifier: "ShowImageFullScreen", sender: nil)
+    }
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let customModalAnimator = CustomModalAnimator()
+        customModalAnimator.pushing = true
+        
+        return customModalAnimator
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let customModalAnimator = CustomModalAnimator()
+        customModalAnimator.pushing = false
+        
+        return customModalAnimator
     }
     
     //Unwind segue for edit profile
     @IBAction func unwindWithSegue(_ segue: UIStoryboardSegue) { }
     
-    //Check if there is a saved profile
-    func checkEntity() -> Bool {
-        return UserDefaults.standard.object(forKey: "Name") != nil
+    func updateProfile() {
+        descriptions = []
         
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        let managedObjectContext = appDelegate.persistentContainer.viewContext
-//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Profile")
-//        fetchRequest.includesSubentities = false
-//
-//        var entitiesCount = 0
-//
-//        do {
-//            entitiesCount = try managedObjectContext.count(for: fetchRequest)
-//        }
-//        catch {
-//            print("error executing fetch request: \(error)")
-//        }
-//
-//        return entitiesCount > 0
+        if let name = UserDefaults.standard.object(forKey: "Name") as? String {
+            descriptions.append(name)
+        } else {
+            descriptions.append("No name saved.")
+        }
+        
+        if let username = UserDefaults.standard.object(forKey: "Username") as? String {
+            descriptions.append(username)
+        } else {
+            descriptions.append("No username saved.")
+        }
+        
+        if let bike = UserDefaults.standard.object(forKey: "Ride") as? String {
+            descriptions.append(bike)
+        } else {
+            descriptions.append("No ride saved.")
+        }
+        
+        if let ride = UserDefaults.standard.object(forKey: "Bike") as? String {
+            descriptions.append(ride)
+        } else {
+            descriptions.append("No bike saved.")
+        }
+        
+        if let description = UserDefaults.standard.object(forKey: "Description") as? String {
+            descriptions.append(description)
+        } else {
+            descriptions.append("No description saved.")
+        }
+    }
+    
+    //Set up table view
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return titles.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! CustomTableViewCell
+        let title = titles[indexPath.row]
+        let description = descriptions[indexPath.row]
+        
+        cell.titleLabel.text = title
+        cell.descriptionLabel.text = description
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension;
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44.0;
     }
 }
 
