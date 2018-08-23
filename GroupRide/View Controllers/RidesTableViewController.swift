@@ -9,13 +9,21 @@
 import UIKit
 
 class RidesTableViewController: UITableViewController {
-    
     @IBAction func doneTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let formatter = DateFormatter()
+        if let date = UserDefaults.standard.object(forKey: "SelectedDate") as? Date {
+            formatter.dateFormat = "MMMM dd, YYY"
+            let selectedDate = formatter.string(from: date)
+            
+            self.navigationItem.title = selectedDate
+        }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

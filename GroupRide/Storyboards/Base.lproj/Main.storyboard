@@ -324,7 +324,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="27E-5X-u2W">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mnr" translatesAutoresizingMaskIntoConstraints="NO" id="27E-5X-u2W">
                                 <rect key="frame" x="124.5" y="80" width="125" height="125"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="125" id="nvQ-T1-4fC"/>
@@ -766,7 +766,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="opd-lh-AqP">
                                         <rect key="frame" x="0.0" y="159" width="295" height="45"/>
@@ -836,7 +836,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKL-Hb-8e2">
                                         <rect key="frame" x="0.0" y="106" width="295" height="45"/>
@@ -971,9 +971,10 @@
         <image name="ProfilePicture" width="300" height="271"/>
         <image name="calendarIcon" width="23" height="23"/>
         <image name="mapMarker" width="23" height="23"/>
+        <image name="mnr" width="300" height="300"/>
         <image name="profileIcon" width="23" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ulb-eP-rey"/>
+        <segue reference="GRF-EQ-RZ4"/>
     </inferredMetricsTieBreakers>
 </document>

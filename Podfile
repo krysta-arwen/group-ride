@@ -8,5 +8,8 @@ target 'GroupRide' do
   # Pods for GroupRide
 pod 'GoogleMaps'
 pod 'JTAppleCalendar'
+pod 'Alamofire', '~> 4.0'
+pod 'Kanna'
+pod 'Geofirestore'
 
 end

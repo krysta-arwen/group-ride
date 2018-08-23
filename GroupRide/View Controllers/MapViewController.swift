@@ -8,6 +8,8 @@
 
 import UIKit
 import GoogleMaps
+import Firebase
+import Geofirestore
 
 class MapViewController: UIViewController {
 
@@ -21,9 +23,10 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Reports user location
+        //Set up location manager
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         
         //Add gesture recognizer to view controller
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
@@ -43,6 +46,8 @@ class MapViewController: UIViewController {
         }
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,6 +60,8 @@ class MapViewController: UIViewController {
         
         if !trackingLocation() {
             checkLocationTrackingAuthorization(sender: sender)
+            UserDefaults.standard.set(true, forKey: userDefaultsKey)
+            trackUserLocation()
         } else {
             locationButton.setTitle("Track Location", for: .normal)
             UserDefaults.standard.set(false, forKey: userDefaultsKey)
@@ -99,6 +106,24 @@ class MapViewController: UIViewController {
             }
         } else {
             print("Location services are not enabled")
+        }
+    }
+    
+    func trackUserLocation() {
+        //Create firestore reference
+        let geoFirestoreRef = Firestore.firestore().collection("userLocations")
+        let geoFirestore = GeoFirestore(collectionRef: geoFirestoreRef)
+        
+        if let location = locationManager.location, let uid = UserDefaults.standard.string(forKey: "uid") {
+            geoFirestore.setLocation(location: location, forDocumentWithID: uid)
+
+        } else {
+            let alertController = UIAlertController(title: "Location Tracking", message: "Unable to track your location at this time.", preferredStyle: .alert)
+            
+            present(alertController, animated: true, completion: nil)
+            
+            locationButton.setTitle("Track Location", for: .normal)
+            UserDefaults.standard.set(false, forKey: userDefaultsKey)
         }
     }
     

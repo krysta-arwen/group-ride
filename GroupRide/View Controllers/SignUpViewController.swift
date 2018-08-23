@@ -22,11 +22,25 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        emailField.becomeFirstResponder()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        self.view.frame.origin.y = -100 // Move view 150 points upward
+    }
+    
+    @objc func keyboardHidden(notification: NSNotification) {
+        self.view.frame.origin.y = 0
     }
     
     @IBAction func signUpTapped(_ sender: Any) {
@@ -58,6 +72,7 @@ class SignUpViewController: UIViewController {
             
             if let user = Auth.auth().currentUser {
                 self.setUserName(user: user, name: name)
+                UserDefaults.standard.set(user.uid, forKey: "uid")
             }
             
             //Save profile to user collection

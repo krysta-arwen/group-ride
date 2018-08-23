@@ -21,6 +21,7 @@
 		7069FDDD211C43F2002F4C3B /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7069FDDC211C43F2002F4C3B /* LogInViewController.swift */; };
 		7069FDDF211C497D002F4C3B /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7069FDDE211C497D002F4C3B /* AuthenticationManager.swift */; };
 		7069FDE1211C49FF002F4C3B /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7069FDE0211C49FF002F4C3B /* Users.swift */; };
+		708CFD53211FC21200FDE45E /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708CFD52211FC21200FDE45E /* Ride.swift */; };
 		709B8B3F211C521A00B62FA2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 709B8B3E211C521A00B62FA2 /* GoogleService-Info.plist */; };
 		70A48D1A20CF5B8200F5FCEB /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A48D1920CF5B8200F5FCEB /* EditProfileViewController.swift */; };
 		70AD4222211CE17E00BE069A /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AD421A211CE17E00BE069A /* GoogleUtilities.framework */; };
@@ -77,6 +78,7 @@
 		7069FDDC211C43F2002F4C3B /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		7069FDDE211C497D002F4C3B /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		7069FDE0211C49FF002F4C3B /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		708CFD52211FC21200FDE45E /* Ride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
 		709B8B3E211C521A00B62FA2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		70A48D1920CF5B8200F5FCEB /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditProfileViewController.swift; path = "GroupRide/View Controllers/EditProfileViewController.swift"; sourceTree = SOURCE_ROOT; };
 		70AD421A211CE17E00BE069A /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = GroupRide/Firebase/GoogleUtilities.framework; sourceTree = "<group>"; };
@@ -199,6 +201,16 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		708CFD54211FC22A00FDE45E /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				7069FDE0211C49FF002F4C3B /* Users.swift */,
+				708CFD52211FC21200FDE45E /* Ride.swift */,
+				7069FDDE211C497D002F4C3B /* AuthenticationManager.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		70DDFC5D20A38F2100AEB96F = {
 			isa = PBXGroup;
 			children = (
@@ -227,12 +239,11 @@
 				70DDFC7720A38F2100AEB96F /* Info.plist */,
 				709B8B3E211C521A00B62FA2 /* GoogleService-Info.plist */,
 				70DDFC6920A38F2100AEB96F /* AppDelegate.swift */,
-				7069FDE0211C49FF002F4C3B /* Users.swift */,
-				7069FDDE211C497D002F4C3B /* AuthenticationManager.swift */,
 				70DDFC7220A38F2100AEB96F /* Assets.xcassets */,
 				7012D34620BE1C5500CB1252 /* Storyboards */,
 				7012D34520BE1C3800CB1252 /* View Controllers */,
 				7002B6362111095300DC0979 /* Custom Classes */,
+				708CFD54211FC22A00FDE45E /* Data */,
 			);
 			path = GroupRide;
 			sourceTree = "<group>";
@@ -400,11 +411,33 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-GroupRide/Pods-GroupRide-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -423,6 +456,7 @@
 				70DDFC6E20A38F2100AEB96F /* ProfileViewController.swift in Sources */,
 				70A48D1A20CF5B8200F5FCEB /* EditProfileViewController.swift in Sources */,
 				7032512E21142E45005E6EB1 /* RidesTableViewController.swift in Sources */,
+				708CFD53211FC21200FDE45E /* Ride.swift in Sources */,
 				703251282113EE20005E6EB1 /* EditProfileTableViewCell.swift in Sources */,
 				7002B6352111094A00DC0979 /* CustomTableViewCell.swift in Sources */,
 				7032512C21141664005E6EB1 /* CustomModalAnimator.swift in Sources */,
@@ -600,46 +634,7 @@
 				);
 				INFOPLIST_FILE = GroupRide/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				"OTHER_LDFLAGS[arch=*]" = (
-					"$(inherited)",
-					"-ObjC",
-					"-l\"c++\"",
-					"-l\"z\"",
-					"-framework",
-					"\"Accelerate\"",
-					"-framework",
-					"\"CoreData\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreImage\"",
-					"-framework",
-					"\"CoreLocation\"",
-					"-framework",
-					"\"CoreTelephony\"",
-					"-framework",
-					"\"CoreText\"",
-					"-framework",
-					"\"GLKit\"",
-					"-framework",
-					"\"GoogleMaps\"",
-					"-framework",
-					"\"GoogleMapsBase\"",
-					"-framework",
-					"\"GoogleMapsCore\"",
-					"-framework",
-					"\"ImageIO\"",
-					"-framework",
-					"\"JTAppleCalendar\"",
-					"-framework",
-					"\"OpenGLES\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"UIKit\"",
-				);
+				"OTHER_LDFLAGS[arch=*]" = "$(inherited) -ObjC -l\"c++\" -l\"z\" -framework \"Accelerate\" -framework \"CoreData\" -framework \"CoreGraphics\" -framework \"CoreImage\" -framework \"CoreLocation\" -framework \"CoreTelephony\" -framework \"CoreText\" -framework \"GLKit\" -framework \"GoogleMaps\" -framework \"GoogleMapsBase\" -framework \"GoogleMapsCore\" -framework \"ImageIO\" -framework \"JTAppleCalendar\" -framework \"OpenGLES\" -framework \"QuartzCore\" -framework \"SystemConfiguration\" -framework \"UIKit\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.krystaarwen.GroupRide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-Header.h";
