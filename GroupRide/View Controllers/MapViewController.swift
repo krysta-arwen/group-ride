@@ -119,7 +119,7 @@ class MapViewController: UIViewController {
 
         } else {
             let alertController = UIAlertController(title: "Location Tracking", message: "Unable to track your location at this time.", preferredStyle: .alert)
-            
+            alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             present(alertController, animated: true, completion: nil)
             
             locationButton.setTitle("Track Location", for: .normal)

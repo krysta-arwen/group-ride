@@ -85,10 +85,6 @@ class CalendarViewController: UIViewController {
                         let rideDate = String(rideTitle.suffix(8))
                         rideTitle = String(rideTitle.prefix(rideTitle.count - 8))
                         
-                        print("Ride Title", rideTitle)
-                        print("Ride Date", rideDate)
-                        print("Ride Link", rideLink)
-                        
                         let newRide = Ride(date: rideDate, name: rideTitle, detail: rideLink)
                         rides.append(newRide)
                     }
@@ -137,11 +133,17 @@ class CalendarViewController: UIViewController {
             
             let date = formatter.string(from: rideDate!)
             
-            print(date)
             dates.append(date)
         }
         
         calendarView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        let navVC = segue.destination as! UINavigationController
+        let rideVC = navVC.topViewController as! RidesTableViewController
+        rideVC.rides = rides
     }
 }
 
@@ -224,7 +226,9 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         let selectedDate = date
         UserDefaults.standard.set(selectedDate, forKey: "SelectedDate")
         
-        self.performSegue(withIdentifier: "ShowRidesPage", sender: nil)
+        if validCell.redIndicator.isHidden == false {
+            self.performSegue(withIdentifier: "ShowRidesPage", sender: nil)
+        }
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {

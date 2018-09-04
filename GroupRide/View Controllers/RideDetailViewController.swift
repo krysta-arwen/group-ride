@@ -7,29 +7,73 @@
 //
 
 import UIKit
+import Alamofire
+import Kanna
 
 class RideDetailViewController: UIViewController {
+    
+    @IBOutlet weak var rideDescriptionTextView: UITextView!
+    var ride: Ride!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        if !ride.name.isEmpty {
+            self.navigationItem.title = ride.name
+        }
+        
+        getRideDetail()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func getRideDetail() {
+        if !ride.detail.isEmpty {
+            let rideUrl = ride.detail.trimmingCharacters(in: .whitespacesAndNewlines)
+            //Get html from website
+            Alamofire.request("http://www.midnightridazz.com/" + rideUrl)
+                .validate()
+                .responseString { response in
+                    if response.result.isSuccess {
+                        if let html = response.result.value {
+                            self.parseHTML(html: html)
+                        }
+                    } else {
+                        print(response.result.error.debugDescription)
+                        self.rideDescriptionTextView.text = "Could not find ride description."
+                    }
+            }
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func parseHTML(html: String) -> Void {
+        if let doc = try? HTML(html: html, encoding: String.Encoding.utf8) {
+            // Search for nodes by CSS selector
+            for url in doc.css("td[class^='content']") {
+                if let text = url.text {
+                    rideDescriptionTextView.text = self.prepareDescription(description: text)
+                }
+            }
+        }
     }
-    */
+    
+    //Remove name and date from description
+    func prepareDescription(description: String) -> String {
+        var trimmedDescription = description.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if trimmedDescription.hasPrefix(ride.name){
+            trimmedDescription = trimmedDescription.replacingOccurrences(of: ride.name, with: "", options: .anchored, range: nil)
+        }
+        
+        //Remove date from description
+        let index = trimmedDescription.index(trimmedDescription.startIndex, offsetBy: 4)
+        if trimmedDescription[index] == "." {
+            trimmedDescription = String(trimmedDescription.dropFirst(8))
+            print(trimmedDescription)
+        } else {
+            trimmedDescription = String(trimmedDescription.dropFirst(9))
+            print(trimmedDescription)
+        }
+ 
+        return trimmedDescription
+    }
 
 }
