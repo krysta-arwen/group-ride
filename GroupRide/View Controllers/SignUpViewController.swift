@@ -72,7 +72,8 @@ class SignUpViewController: UIViewController {
             
             if let user = Auth.auth().currentUser {
                 self.setUserName(user: user, name: name)
-                UserDefaults.standard.set(user.uid, forKey: "uid")
+                UserDefaults.standard.set(name as String, forKey: "Username")
+                UserDefaults.standard.set(user.uid as String, forKey: "uid")
             }
             
             //Save profile to user collection
@@ -104,6 +105,8 @@ class SignUpViewController: UIViewController {
             
             //Save user details and perform segue
             AuthenticationManager.sharedInstance.didLogIn(user: user)
+            UserDefaults.standard.set(true, forKey: "Logged In")
+            UserDefaults.standard.synchronize()
             self.performSegue(withIdentifier: "ShowMapFromSignUp", sender: nil)
         }
     }

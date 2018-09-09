@@ -23,6 +23,8 @@ class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.title = "Ride Calendar"
+        
         setUpCalendarView()
         
         getCalendarData(urlString: "http://www.midnightridazz.com/events.php")

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		572BFD459580A1F2FDA8B60F /* Pods_GroupRide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697EAC55A0DE77513D7DD311 /* Pods_GroupRide.framework */; };
 		7002B6352111094A00DC0979 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7002B6342111094A00DC0979 /* CustomTableViewCell.swift */; };
+		700B722E21451D5F00472449 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 700B722D21451D5F00472449 /* GoogleService-Info.plist */; };
 		7012D33D20BE060400CB1252 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7012D33C20BE060300CB1252 /* CalendarViewController.swift */; };
 		7012D34820BE554900CB1252 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7012D34720BE554900CB1252 /* CustomCell.swift */; };
 		703251282113EE20005E6EB1 /* EditProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703251272113EE20005E6EB1 /* EditProfileTableViewCell.swift */; };
@@ -22,7 +23,6 @@
 		7069FDDF211C497D002F4C3B /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7069FDDE211C497D002F4C3B /* AuthenticationManager.swift */; };
 		7069FDE1211C49FF002F4C3B /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7069FDE0211C49FF002F4C3B /* Users.swift */; };
 		708CFD53211FC21200FDE45E /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708CFD52211FC21200FDE45E /* Ride.swift */; };
-		709B8B3F211C521A00B62FA2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 709B8B3E211C521A00B62FA2 /* GoogleService-Info.plist */; };
 		70A48D1A20CF5B8200F5FCEB /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A48D1920CF5B8200F5FCEB /* EditProfileViewController.swift */; };
 		70AD4222211CE17E00BE069A /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AD421A211CE17E00BE069A /* GoogleUtilities.framework */; };
 		70AD4223211CE17E00BE069A /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AD421B211CE17E00BE069A /* GoogleAppMeasurement.framework */; };
@@ -57,6 +57,7 @@
 		697EAC55A0DE77513D7DD311 /* Pods_GroupRide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupRide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7002B6342111094A00DC0979 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomTableViewCell.swift; path = "GroupRide/Custom Classes/CustomTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		7006C9E1211CEAEB00506EAF /* GroupRide-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "GroupRide-Bridging-Header.h"; path = "GroupRide/GroupRide-Bridging-Header.h"; sourceTree = "<group>"; };
+		700B722D21451D5F00472449 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7012D33C20BE060300CB1252 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		7012D34720BE554900CB1252 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomCell.swift; path = "GroupRide/Custom Classes/CustomCell.swift"; sourceTree = SOURCE_ROOT; };
 		7026A4EA211CEBDB0036544B /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
@@ -79,7 +80,6 @@
 		7069FDDE211C497D002F4C3B /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		7069FDE0211C49FF002F4C3B /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		708CFD52211FC21200FDE45E /* Ride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
-		709B8B3E211C521A00B62FA2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		70A48D1920CF5B8200F5FCEB /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditProfileViewController.swift; path = "GroupRide/View Controllers/EditProfileViewController.swift"; sourceTree = SOURCE_ROOT; };
 		70AD421A211CE17E00BE069A /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = GroupRide/Firebase/GoogleUtilities.framework; sourceTree = "<group>"; };
 		70AD421B211CE17E00BE069A /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = GroupRide/Firebase/GoogleAppMeasurement.framework; sourceTree = "<group>"; };
@@ -237,7 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				70DDFC7720A38F2100AEB96F /* Info.plist */,
-				709B8B3E211C521A00B62FA2 /* GoogleService-Info.plist */,
+				700B722D21451D5F00472449 /* GoogleService-Info.plist */,
 				70DDFC6920A38F2100AEB96F /* AppDelegate.swift */,
 				70DDFC7220A38F2100AEB96F /* Assets.xcassets */,
 				7012D34620BE1C5500CB1252 /* Storyboards */,
@@ -331,6 +331,11 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -358,8 +363,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				70DDFC7620A38F2100AEB96F /* LaunchScreen.storyboard in Resources */,
-				709B8B3F211C521A00B62FA2 /* GoogleService-Info.plist in Resources */,
 				70DDFC7320A38F2100AEB96F /* Assets.xcassets in Resources */,
+				700B722E21451D5F00472449 /* GoogleService-Info.plist in Resources */,
 				70DDFC7120A38F2100AEB96F /* Main.storyboard in Resources */,
 				70AD4246211CE4B700BE069A /* gRPCCertificates.bundle in Resources */,
 			);
@@ -634,7 +639,46 @@
 				);
 				INFOPLIST_FILE = GroupRide/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				"OTHER_LDFLAGS[arch=*]" = "$(inherited) -ObjC -l\"c++\" -l\"z\" -framework \"Accelerate\" -framework \"CoreData\" -framework \"CoreGraphics\" -framework \"CoreImage\" -framework \"CoreLocation\" -framework \"CoreTelephony\" -framework \"CoreText\" -framework \"GLKit\" -framework \"GoogleMaps\" -framework \"GoogleMapsBase\" -framework \"GoogleMapsCore\" -framework \"ImageIO\" -framework \"JTAppleCalendar\" -framework \"OpenGLES\" -framework \"QuartzCore\" -framework \"SystemConfiguration\" -framework \"UIKit\"";
+				"OTHER_LDFLAGS[arch=*]" = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreImage\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"GoogleMaps\"",
+					"-framework",
+					"\"GoogleMapsBase\"",
+					"-framework",
+					"\"GoogleMapsCore\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"JTAppleCalendar\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.krystaarwen.GroupRide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-Header.h";

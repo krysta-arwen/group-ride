@@ -84,7 +84,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             descriptions.append("No name saved.")
         }
         
-        if let username = UserDefaults.standard.object(forKey: "Username") as? String {
+        if let username = UserDefaults.standard.string(forKey: "Username") {
             descriptions.append(username)
         } else {
             descriptions.append("No username saved.")

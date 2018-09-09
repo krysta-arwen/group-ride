@@ -20,11 +20,6 @@ class LogInViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -40,7 +35,7 @@ class LogInViewController: UIViewController {
     }
 
     @IBAction func logInButtonTapped(_ sender: Any) {
-        guard let email = emailTextField.text, let password = passwordTextField.text, email.characters.count > 0, password.characters.count > 0 else {
+        guard let email = emailTextField.text, let password = passwordTextField.text, email.count > 0, password.count > 0 else {
             self.showAlert(message: "Enter an email and a password.")
             return
         }
@@ -53,6 +48,9 @@ class LogInViewController: UIViewController {
                     self.showAlert(message: "Incorrect username or password.")
                 } else {
                     self.showAlert(message: "Error: \(error.localizedDescription)")
+                    let castedError = error as NSError
+                    let firebaseError = AuthErrorCode(rawValue: castedError.code)
+                    print(castedError.code)
                 }
                 print(error.localizedDescription)
                 return
@@ -60,7 +58,10 @@ class LogInViewController: UIViewController {
             
             if let user = Auth.auth().currentUser {
                 AuthenticationManager.sharedInstance.didLogIn(user: user)
-                UserDefaults.standard.set(user.uid, forKey: "uid")
+                UserDefaults.standard.set(user.uid as String, forKey: "uid")
+                UserDefaults.standard.set(user.displayName as! String, forKey: "Username")
+                UserDefaults.standard.set(true, forKey: "Logged In")
+                UserDefaults.standard.synchronize()
                 self.performSegue(withIdentifier: "ShowMapFromLogIn", sender: nil)
             }
         }
