@@ -16,6 +16,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var buttonTopConstraint: NSLayoutConstraint!
+    var queryAdded = false
     var rideTextField: UITextField!
     var saveAction: UIAlertAction!
     var userLocation: CLLocation!
@@ -32,10 +33,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Settings for Firestore
-//        let settings = db.settings
-//        settings.areTimestampsInSnapshotsEnabled = true
-//        db.settings = settings
+        checkUserLogin()
         
         //Set up location manager
         locationManager.delegate = self
@@ -60,8 +58,20 @@ class MapViewController: UIViewController {
         mapMarkers = []
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    func checkUserLogin() {
+        if Auth.auth().currentUser == nil {
+            //Return to log in page
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window = UIWindow(frame: UIScreen.main.bounds)
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let rootViewController = mainStoryboard.instantiateViewController(withIdentifier: "logInNavigation")
+            
+            appDelegate.window!.rootViewController = rootViewController
+            appDelegate.window!.makeKeyAndVisible()
+            
+            UserDefaults.standard.set(false, forKey: "LoggedIn")
+            UserDefaults.standard.synchronize()
+        }
     }
     
     @IBAction func trackLocationTapped(_ sender: UIButton) {
@@ -366,7 +376,11 @@ extension MapViewController: CLLocationManagerDelegate {
 //        }
         
         userLocation = location
-        observeQuery()
+        
+        if !queryAdded {
+            observeQuery()
+            queryAdded = true
+        }
 
         mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
         

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="asq-Pg-yTN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -573,6 +573,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="W5Z-TW-y3H"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
                                         <state key="normal" title="Log In">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -591,6 +592,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="icC-Bm-feq"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
                                         <state key="normal" title="Sign Up">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -667,6 +669,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="eDK-sB-el0"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
                                         <state key="normal" title="Sign Up">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -737,6 +740,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="TGp-OD-nsc"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
                                         <state key="normal" title="Log In">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -774,7 +778,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabViewController" id="49e-Tb-3d3" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -841,7 +845,7 @@
         <!--Navigation Controller-->
         <scene sceneID="zr1-MB-QJG">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="asq-Pg-yTN" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="logInNavigation" automaticallyAdjustsScrollViewInsets="NO" id="asq-Pg-yTN" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eMw-pf-PIn">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -867,6 +871,6 @@
         <image name="profileIcon" width="23" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GRF-EQ-RZ4"/>
+        <segue reference="ulb-eP-rey"/>
     </inferredMetricsTieBreakers>
 </document>

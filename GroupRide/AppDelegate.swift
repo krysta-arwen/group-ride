@@ -22,7 +22,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         GMSServices.provideAPIKey(googleApiKey)
         
+        //Configure Firebase
         FirebaseApp.configure()
+        let db = Firestore.firestore()
+        let settings = db.settings
+        settings.areTimestampsInSnapshotsEnabled = true
+        db.settings = settings
+        
+        //Check if user is logged in
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if UserDefaults.standard.bool(forKey: "LoggedIn") {
+            let initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "tabViewController")
+            self.window?.rootViewController = initialViewController
+        } else {
+            let initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "logInNavigation")
+            self.window?.rootViewController = initialViewController
+        }
+        
+        self.window?.makeKeyAndVisible()
 
         return true
     }

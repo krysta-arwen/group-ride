@@ -60,7 +60,7 @@ class LogInViewController: UIViewController {
                 AuthenticationManager.sharedInstance.didLogIn(user: user)
                 UserDefaults.standard.set(user.uid as String, forKey: "uid")
                 UserDefaults.standard.set(user.displayName as! String, forKey: "Username")
-                UserDefaults.standard.set(true, forKey: "Logged In")
+                UserDefaults.standard.set(true, forKey: "LoggedIn")
                 UserDefaults.standard.synchronize()
                 self.performSegue(withIdentifier: "ShowMapFromLogIn", sender: nil)
             }

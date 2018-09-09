@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate {
 
@@ -109,6 +110,27 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    @objc func logOutTapped(sender: UIButton) {
+        
+        do {
+            try Auth.auth().signOut()
+            
+            //Set rootview to log in screen after log out
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window = UIWindow(frame: UIScreen.main.bounds)
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let rootViewController = mainStoryboard.instantiateViewController(withIdentifier: "logInNavigation")
+            
+            appDelegate.window!.rootViewController = rootViewController
+            appDelegate.window!.makeKeyAndVisible()
+            
+            UserDefaults.standard.set(false, forKey: "LoggedIn")
+            UserDefaults.standard.synchronize()
+        } catch let error as NSError {
+            print (error.localizedDescription)
+        }
+    }
+    
     //Set up table view
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -135,6 +157,28 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44.0;
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 100
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard section == 0 else { return nil }
+        
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100))
+        
+        let logOutButton = UIButton(frame: CGRect(x: 0, y: 0, width: 130, height: 44.0))
+        logOutButton.center = footerView.center
+        logOutButton.setTitle("Log Out", for: .normal)
+        logOutButton.titleLabel?.font = UIFont(name: "Arial", size: 17.0)
+        logOutButton.backgroundColor = .lightGray
+        logOutButton.layer.cornerRadius = 10.0
+        logOutButton.addTarget(self, action: #selector(self.logOutTapped(sender:)), for: .touchUpInside)
+        
+        footerView.addSubview(logOutButton)
+        
+        return footerView
     }
 }
 
