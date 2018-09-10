@@ -14,7 +14,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var profileTableView: UITableView!
     
-    let titles = ["Name", "Username", "Ride", "Bike", "Description"]
+    let titles = ["\(NSLocalizedString("name", comment: ""))", "\(NSLocalizedString("username", comment: ""))", "\(NSLocalizedString("ride", comment: ""))", "\(NSLocalizedString("bike", comment: ""))", "\(NSLocalizedString("description", comment: ""))"]
     var descriptions: [String]!
     
     override func viewDidLoad() {
@@ -33,10 +33,23 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         profilePicture.addGestureRecognizer(tapGestureRecognizer)
         
         //Set up table view
-        profileTableView.tableFooterView = UIView()
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 100))
+        
+        let logOutButton = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 44.0))
+        logOutButton.center = footerView.center
+        logOutButton.setTitle("\(NSLocalizedString("logOut", comment: ""))", for: .normal)
+        logOutButton.titleLabel?.font = UIFont(name: "Arial", size: 17.0)
+        logOutButton.backgroundColor = .lightGray
+        logOutButton.layer.cornerRadius = 5.0
+        logOutButton.addTarget(self, action: #selector(self.logOutTapped(sender:)), for: .touchUpInside)
+        
+        footerView.addSubview(logOutButton)
+        
+        profileTableView.tableFooterView = footerView
         
         profileTableView.delegate = self
         profileTableView.dataSource = self
+        profileTableView.alwaysBounceVertical = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -82,31 +95,31 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if let name = UserDefaults.standard.object(forKey: "Name") as? String {
             descriptions.append(name)
         } else {
-            descriptions.append("No name saved.")
+            descriptions.append("\(NSLocalizedString("noNameSaved", comment: ""))")
         }
         
         if let username = UserDefaults.standard.string(forKey: "Username") {
             descriptions.append(username)
         } else {
-            descriptions.append("No username saved.")
+            descriptions.append("\(NSLocalizedString("noUsernameSaved", comment: ""))")
         }
         
         if let bike = UserDefaults.standard.object(forKey: "Ride") as? String {
             descriptions.append(bike)
         } else {
-            descriptions.append("No ride saved.")
+            descriptions.append("\(NSLocalizedString("noRideSaved", comment: ""))")
         }
         
         if let ride = UserDefaults.standard.object(forKey: "Bike") as? String {
             descriptions.append(ride)
         } else {
-            descriptions.append("No bike saved.")
+            descriptions.append("\(NSLocalizedString("noBikeSaved", comment: ""))")
         }
         
         if let description = UserDefaults.standard.object(forKey: "Description") as? String {
             descriptions.append(description)
         } else {
-            descriptions.append("No description saved.")
+            descriptions.append("\(NSLocalizedString("noDescriptionSaved", comment: ""))")
         }
         
         profileTableView.reloadData()
@@ -159,34 +172,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+        profileTableView.beginUpdates()
+        profileTableView.endUpdates()
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension;
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44.0;
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 100
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        guard section == 0 else { return nil }
-        
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100))
-        
-        let logOutButton = UIButton(frame: CGRect(x: 0, y: 0, width: 130, height: 44.0))
-        logOutButton.center = footerView.center
-        logOutButton.setTitle("Log Out", for: .normal)
-        logOutButton.titleLabel?.font = UIFont(name: "Arial", size: 17.0)
-        logOutButton.backgroundColor = .lightGray
-        logOutButton.layer.cornerRadius = 10.0
-        logOutButton.addTarget(self, action: #selector(self.logOutTapped(sender:)), for: .touchUpInside)
-        
-        footerView.addSubview(logOutButton)
-        
-        return footerView
     }
 }
 

@@ -1,0 +1,55 @@
+/* 
+  Localizable.strings
+  GroupRide
+
+  Created by Krysta Deluca on 9/9/18.
+  Copyright © 2018 Krysta Deluca. All rights reserved.
+*/
+
+//Log In
+"emailAndPasswordEntry" = "Ingrese un correo electrónico y una contraseña.";
+"noUsers" = "No hay usuarios con la cuenta especificada.";
+"incorrectLogIn" = "Nombre de usuario o contraseña incorrecta.";
+"logIn" = "Identificarse";
+
+//Sign Up
+"missingInfo" = "Ingrese un nombre, un correo electrónico y una contraseña.";
+"invalidEmail" = "Introduzca un correo electrónico válido.";
+"emailInUse" = "Correo electrónico ya en uso.";
+"signUp" = "Regístrate";
+
+//Map
+"trackingLocation" = "Agregando Ubicación";
+"trackLocation" = "Agregar Ubicación";
+"locationTracking" = "Ubicación Agregando";
+"enableLocationTracking" = "Para rastrear su viaje, debe habilitar el acceso a la ubicación en Configuración";
+"cancel" = "Cancelar";
+"settings" = "Configuraciones";
+"rideName" = "Nombre del paseo";
+"enterRideName" = "Para agregar ubicación, por favor ingrese el nombre del paseo.";
+"save" = "Salvar";
+"rideNamePlaceholder" = "Nombre del paseo ...";
+"unableToTrackLocation" = "No se puede agregar tu ubicación en este momento.";
+"noRideProvided" = "No se proporcionó el nombre del paseo";
+"noUsernameProvided" = "No se proporcionó un nombre de usuario";
+
+//Calendar
+"rideCalendar" = "Calendario del Paseo";
+
+//Ride Detail
+"noRideDescription" = "No se pudo encontrar la descripción del paseo.";
+
+//Profile
+"name" = "Nombre";
+"username" = "Usuario";
+"ride" = "Paseo";
+"bike" = "Bicicleta";
+"description" = "Descripción";
+"noNameSaved" = "Sin nombre guardado";
+"noUsernameSaved" = "Sin nombre de usuario guardado";
+"noRideSaved" = "Sin paseo guardado";
+"noBikeSaved" = "Sin bicicleta guardado";
+"noDescriptionSaved" = "Sin descripción guardada";
+"emptyName" = "Debes ingresar un nombre.";
+"emptyUsername" = "Debes ingresar un nombre de usuario.";
+"logOut" = "Cerrar Sesión";

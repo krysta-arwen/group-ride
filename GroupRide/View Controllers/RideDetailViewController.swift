@@ -38,7 +38,7 @@ class RideDetailViewController: UIViewController {
                         }
                     } else {
                         print(response.result.error.debugDescription)
-                        self.rideDescriptionTextView.text = "Could not find ride description."
+                        self.rideDescriptionTextView.text = "\(NSLocalizedString("noRideDescription", comment: ""))"
                     }
             }
         }

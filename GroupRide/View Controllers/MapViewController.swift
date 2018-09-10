@@ -49,9 +49,9 @@ class MapViewController: UIViewController {
         
         //Set title
         if trackingLocation() {
-            locationButton.setTitle("Tracking Location", for: .normal)
+            locationButton.setTitle("\(NSLocalizedString("trackingLocation", comment: ""))", for: .normal)
         } else {
-            locationButton.setTitle("Track Location", for: .normal)
+            locationButton.setTitle("\(NSLocalizedString("trackLocation", comment: ""))", for: .normal)
         }
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
@@ -82,7 +82,7 @@ class MapViewController: UIViewController {
             checkLocationTrackingAuthorization(sender: sender)
             showRideEntry(sender: sender)
         } else {
-            locationButton.setTitle("Track Location", for: .normal)
+            locationButton.setTitle("\(NSLocalizedString("trackLocation", comment: ""))", for: .normal)
             stopTrackingUserLocation()
             UserDefaults.standard.set(false, forKey: userDefaultsKey)
         }
@@ -91,13 +91,13 @@ class MapViewController: UIViewController {
     
     //Show notification to allow location tracking
     func showLocationAlert(sender: UIButton) {
-        let alertController = UIAlertController(title: "Location Tracking", message: "To track your ride, you must enable location tracking in Settings", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "\(NSLocalizedString("locationTracking", comment: ""))", message: "\(NSLocalizedString("enableLocationTracking", comment: ""))", preferredStyle: .alert)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (alert) in
+        let cancelAction = UIAlertAction(title: "\(NSLocalizedString("cancel", comment: ""))", style: .cancel) { (alert) in
             print("User tapped Cancel")
         }
         
-        let settingsAction = UIAlertAction(title: "Settings", style: .default, handler: { (alert) in
+        let settingsAction = UIAlertAction(title: "\(NSLocalizedString("settings", comment: ""))", style: .default, handler: { (alert) in
             if let appSettings = URL(string: UIApplicationOpenSettingsURLString) {
                 UIApplication.shared.openURL(appSettings)
             }
@@ -129,9 +129,9 @@ class MapViewController: UIViewController {
     
     //Show alert to enter ride name
     func showRideEntry(sender: UIButton) {
-        let alertController = UIAlertController(title: "Ride Name", message: "To track your ride, please enter the name of the ride", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "\(NSLocalizedString("rideName", comment: ""))", message: "\(NSLocalizedString("enterRideName", comment: ""))", preferredStyle: .alert)
         
-        saveAction = UIAlertAction(title: "Save", style: .default, handler: { (alert) in
+        saveAction = UIAlertAction(title: "\(NSLocalizedString("save", comment: ""))", style: .default, handler: { (alert) in
             guard let textField = self.rideTextField else {
                 return;
             }
@@ -146,7 +146,7 @@ class MapViewController: UIViewController {
         
         alertController.addTextField { (textField) in
             self.rideTextField = textField
-            self.rideTextField.placeholder = "Ride Name..."
+            self.rideTextField.placeholder = "\(NSLocalizedString("rideNamePlaceholder", comment: ""))"
         }
         
         //Add notification to disable/enable save button
@@ -155,7 +155,7 @@ class MapViewController: UIViewController {
             self.saveAction.isEnabled = !textField.text!.isEmpty
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: "\(NSLocalizedString("cancel", comment: ""))", style: .cancel)
         
         alertController.addAction(cancelAction)
         alertController.addAction(saveAction)
@@ -185,15 +185,15 @@ class MapViewController: UIViewController {
             }
             
             //Set button title
-            locationButton.setTitle("Tracking Location", for: .normal)
+            locationButton.setTitle("\(NSLocalizedString("trackingLocation", comment: ""))", for: .normal)
             UserDefaults.standard.set(true, forKey: userDefaultsKey)
         } else {
             //Pop alert
-            let alertController = UIAlertController(title: "Location Tracking", message: "Unable to track your location at this time.", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "\(NSLocalizedString("locationTracking", comment: ""))", message: "\(NSLocalizedString("unableToTrackLocation", comment: ""))", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             present(alertController, animated: true, completion: nil)
             
-            locationButton.setTitle("Track Location", for: .normal)
+            locationButton.setTitle("\(NSLocalizedString("trackLocation", comment: ""))", for: .normal)
             UserDefaults.standard.set(false, forKey: userDefaultsKey)
         }
     }
@@ -231,11 +231,9 @@ class MapViewController: UIViewController {
             
             //Observe key entry
             let entryQueryHandle = circleQuery.observe(.documentEntered, with: { (key, location) in
-                print("The document with documentID '\(key)' entered the search area and is at location '\(location)'")
-                
                 if key != self.uid {
                     let bikeMarker = GMSMarker()
-                    bikeMarker.title = self.getRiderName(uid: key!)
+//                    bikeMarker.title = self.getRiderName(uid: key!)
 //                    bikeMarker.snippet = self.getRideName(uid: key!)
                     bikeMarker.userData = key
                     bikeMarker.position = CLLocationCoordinate2D(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
@@ -246,8 +244,6 @@ class MapViewController: UIViewController {
             
             //Observe exit
             let exitQueryHandle = circleQuery.observe(.documentExited, with: { (key, location) in
-                print("The document with documentID '\(key)' entered the search area and is at location '\(location)'")
-                
                 if key != self.uid {
                     if let mapMarkers = self.mapMarkers {
                         for marker in mapMarkers {
@@ -279,7 +275,7 @@ class MapViewController: UIViewController {
                     
                     //Add new marker
                     let bikeMarker = GMSMarker()
-                    bikeMarker.snippet = self.getRiderName(uid: key!)
+//                    bikeMarker.snippet = self.getRiderName(uid: key!)
 //                    bikeMarker.title = self.getRideName(uid: key!)
                     bikeMarker.userData = key
                     bikeMarker.position = CLLocationCoordinate2D(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
@@ -292,7 +288,7 @@ class MapViewController: UIViewController {
     }
     
     func getRideName(uid: String) -> String {
-        var ride = "No ride provided"
+        var ride = "\(NSLocalizedString("noRideProvided", comment: ""))"
         let docRef = db.collection("userLocations").document(uid)
         
         docRef.getDocument { (document, error) in
@@ -310,7 +306,7 @@ class MapViewController: UIViewController {
     }
     
     func getRiderName(uid: String) -> String {
-        var rider = "No username provided"
+        var rider = "\(NSLocalizedString("noUsernameProvided", comment: ""))"
         let docRef = db.collection("users").document(uid)
         
         docRef.getDocument { (document, error) in
@@ -367,10 +363,6 @@ extension MapViewController: CLLocationManagerDelegate {
         guard let location = locations.first else {
             return
         }
-        
-//        if let query = circleQuery {
-//            circleQuery.removeAllObservers()
-//        }
         
         userLocation = location
         

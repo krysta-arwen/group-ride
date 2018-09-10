@@ -35,7 +35,8 @@ class SignUpViewController: UIViewController {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        self.view.frame.origin.y = -100 // Move view 150 points upward
+        //Move view upwards when keyboard shows
+        self.view.frame.origin.y = -100
     }
     
     @objc func keyboardHidden(notification: NSNotification) {
@@ -51,7 +52,7 @@ class SignUpViewController: UIViewController {
             email.count > 0,
             password.count > 0
             else {
-                self.showAlert(message: "Enter a name, an email and a password.")
+                self.showAlert(message: "\(NSLocalizedString("missingInfo", comment: ""))")
                 return
         }
         
@@ -59,9 +60,9 @@ class SignUpViewController: UIViewController {
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if let error = error {
                 if error._code == AuthErrorCode.invalidEmail.rawValue {
-                    self.showAlert(message: "Enter a valid email.")
+                    self.showAlert(message: "\(NSLocalizedString("invalidEmail", comment: ""))")
                 } else if error._code == AuthErrorCode.emailAlreadyInUse.rawValue {
-                    self.showAlert(message: "Email already in use.")
+                    self.showAlert(message: "\(NSLocalizedString("emailInUse", comment: ""))")
                 } else {
                     self.showAlert(message: "Error: \(error.localizedDescription)")
                 }
@@ -111,7 +112,7 @@ class SignUpViewController: UIViewController {
     }
     
     func showAlert(message: String) {
-        let alertController = UIAlertController(title: "iChat", message: message, preferredStyle: .alert)
+        let alertController = UIAlertController(title: "\(NSLocalizedString("signUp", comment: ""))", message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         present(alertController, animated: true, completion: nil)
     }

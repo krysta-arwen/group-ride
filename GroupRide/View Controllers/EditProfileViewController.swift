@@ -13,7 +13,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
     @IBOutlet weak var editTableView: UITableView!
     var activeTextView: UITextView?
     
-    let titles = ["Name", "Username", "Ride", "Bike", "Description"]
+    let titles = ["\(NSLocalizedString("name", comment: ""))", "\(NSLocalizedString("username", comment: ""))", "\(NSLocalizedString("ride", comment: ""))", "\(NSLocalizedString("bike", comment: ""))", "\(NSLocalizedString("description", comment: ""))"]
     var descriptions: [String]!
     var textLimitLength = 20
     
@@ -25,6 +25,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
         editTableView.tableFooterView = UIView()
         editTableView.delegate = self
         editTableView.dataSource = self
+        editTableView.alwaysBounceVertical = false
         
         //Looks for single or multiple taps
          let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -64,31 +65,31 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
         if let name = UserDefaults.standard.object(forKey: "Name") as? String {
             descriptions.append(name)
         } else {
-            descriptions.append("No name saved.")
+            descriptions.append("\(NSLocalizedString("noNameSaved", comment: ""))")
         }
         
         if let username = UserDefaults.standard.string(forKey: "Username") {
             descriptions.append(username)
         } else {
-            descriptions.append("No username saved.")
+            descriptions.append("\(NSLocalizedString("noUsernameSaved", comment: ""))")
         }
         
         if let bike = UserDefaults.standard.object(forKey: "Ride") as? String {
             descriptions.append(bike)
         } else {
-            descriptions.append("No ride saved.")
+            descriptions.append("\(NSLocalizedString("noRideSaved", comment: ""))")
         }
         
         if let ride = UserDefaults.standard.object(forKey: "Bike") as? String {
             descriptions.append(ride)
         } else {
-            descriptions.append("No bike saved.")
+            descriptions.append("\(NSLocalizedString("noBikeSaved", comment: ""))")
         }
         
         if let description = UserDefaults.standard.object(forKey: "Description") as? String {
             descriptions.append(description)
         } else {
-            descriptions.append("No description saved.")
+            descriptions.append("\(NSLocalizedString("noDescriptionSaved", comment: ""))")
         }
     }
     
@@ -99,8 +100,8 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
         let nameCell = editTableView.cellForRow(at: indexPath) as! EditProfileTableViewCell
         nameCell.errorLabel.alpha = 0
         
-        if descriptions[0] == "No name saved." || descriptions[0] == "" {
-            nameCell.errorLabel.text = "You must enter a name."
+        if descriptions[0] == "\(NSLocalizedString("noNameSaved", comment: ""))" || descriptions[0] == "" {
+            nameCell.errorLabel.text = "\(NSLocalizedString("emptyName", comment: ""))"
             UIView.animate(withDuration: 1) {
                 nameCell.errorLabel.alpha = 1
             }
@@ -111,8 +112,8 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
         let usernameCell = editTableView.cellForRow(at: indexPath) as! EditProfileTableViewCell
         usernameCell.errorLabel.alpha = 0
         
-        if descriptions[1] == "No username saved." || descriptions[1] == "" {
-            usernameCell.errorLabel.text = "You must enter a username."
+        if descriptions[1] == "\(NSLocalizedString("noUsernameSaved", comment: ""))" || descriptions[1] == "" {
+            usernameCell.errorLabel.text = "\(NSLocalizedString("emptyUsername", comment: ""))"
             UIView.animate(withDuration: 1) {
                 usernameCell.errorLabel.alpha = 1
             }

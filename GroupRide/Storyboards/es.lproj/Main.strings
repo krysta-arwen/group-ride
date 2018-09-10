@@ -1,0 +1,87 @@
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "7Ju-fb-RKX"; */
+"7Ju-fb-RKX.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "AOb-gi-4Pc"; */
+"AOb-gi-4Pc.normalTitle" = "Regístrate";
+
+/* Class = "UILabel"; text = "Sat"; ObjectID = "EHX-4l-vbA"; */
+"EHX-4l-vbA.text" = "Sáb";
+
+/* Class = "UIButton"; normalTitle = "Log In"; ObjectID = "IKL-Hb-8e2"; */
+"IKL-Hb-8e2.normalTitle" = "Identificarse";
+
+/* Class = "UIButton"; normalTitle = "Track Location"; ObjectID = "JpG-30-9W4"; */
+"JpG-30-9W4.normalTitle" = "Agregar Ubicación";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "LHS-0P-mZc"; */
+"LHS-0P-mZc.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "Lgi-vF-L9o"; */
+"Lgi-vF-L9o.placeholder" = "Contraseña";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "Mxq-Vx-3Mc"; */
+"Mxq-Vx-3Mc.placeholder" = "Contraseña";
+
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "Peo-pf-GFN"; */
+"Peo-pf-GFN.placeholder" = "Nombre de Usuario";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "Rer-76-SwN"; */
+"Rer-76-SwN.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "Rev-aH-4hd"; */
+"Rev-aH-4hd.placeholder" = "Correo Electrónico";
+
+/* Class = "UIButton"; normalTitle = "Log In"; ObjectID = "a4P-ww-VfG"; */
+"a4P-ww-VfG.normalTitle" = "Identificarse";
+
+/* Class = "UILabel"; text = "Mon"; ObjectID = "aPu-Jb-rIH"; */
+"aPu-Jb-rIH.text" = "Lun";
+
+/* Class = "UILabel"; text = "Sun"; ObjectID = "cS8-K0-VzA"; */
+"cS8-K0-VzA.text" = "Dom";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "csF-qa-jDb"; */
+"csF-qa-jDb.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "fFm-tq-pln"; */
+"fFm-tq-pln.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "fuL-Ga-AjH"; */
+"fuL-Ga-AjH.text" = "Label";
+
+/* Class = "UILabel"; text = "Month"; ObjectID = "g5D-uy-zeK"; */
+"g5D-uy-zeK.text" = "Month";
+
+/* Class = "UILabel"; text = "Thu"; ObjectID = "gTS-pz-bYy"; */
+"gTS-pz-bYy.text" = "Jue";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "hUT-6h-S4U"; */
+"hUT-6h-S4U.normalTitle" = "Hecho";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "jVe-zb-uzE"; */
+"jVe-zb-uzE.text" = "Title";
+
+/* Class = "UILabel"; text = "Fri"; ObjectID = "js3-0Q-GlG"; */
+"js3-0Q-GlG.text" = "Vie";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "oCT-zY-RdQ"; */
+"oCT-zY-RdQ.placeholder" = "Correo Electrónico";
+
+/* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "opd-lh-AqP"; */
+"opd-lh-AqP.normalTitle" = "Regístrate";
+
+/* Class = "UILabel"; text = "Tue"; ObjectID = "p7h-Oz-maN"; */
+"p7h-Oz-maN.text" = "Mar";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "rvH-E5-C9w"; */
+"rvH-E5-C9w.title" = " ";
+
+/* Class = "UILabel"; text = "Year"; ObjectID = "t6a-uj-UPs"; */
+"t6a-uj-UPs.text" = "Year";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "uIy-SK-Zdt"; */
+"uIy-SK-Zdt.text" = "Label";
+
+/* Class = "UILabel"; text = "Wed"; ObjectID = "wU5-qe-hz7"; */
+"wU5-qe-hz7.text" = "Mié";

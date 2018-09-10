@@ -22,8 +22,8 @@ class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationItem.title = "Ride Calendar"
+
+        self.navigationItem.title = "\(NSLocalizedString("rideCalendar", comment: ""))"
         
         setUpCalendarView()
         

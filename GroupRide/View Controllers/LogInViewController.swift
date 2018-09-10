@@ -27,7 +27,8 @@ class LogInViewController: UIViewController {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        self.view.frame.origin.y = -100 // Move view 150 points upward
+        //Move view up when keyboard will show
+        self.view.frame.origin.y = -100
     }
     
     @objc func keyboardHidden(notification: NSNotification) {
@@ -36,16 +37,16 @@ class LogInViewController: UIViewController {
 
     @IBAction func logInButtonTapped(_ sender: Any) {
         guard let email = emailTextField.text, let password = passwordTextField.text, email.count > 0, password.count > 0 else {
-            self.showAlert(message: "Enter an email and a password.")
+            self.showAlert(message: "\(NSLocalizedString("emailAndPasswordEntry", comment: ""))")
             return
         }
         
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if let error = error {
                 if error._code == AuthErrorCode.userNotFound.rawValue {
-                    self.showAlert(message: "There are no users with the specified account.")
+                    self.showAlert(message: "\(NSLocalizedString("noUsers", comment: ""))")
                 } else if error._code == AuthErrorCode.wrongPassword.rawValue {
-                    self.showAlert(message: "Incorrect username or password.")
+                    self.showAlert(message: "\(NSLocalizedString("incorrectLogIn", comment: ""))")
                 } else {
                     self.showAlert(message: "Error: \(error.localizedDescription)")
                     let castedError = error as NSError
@@ -68,7 +69,7 @@ class LogInViewController: UIViewController {
     }
     
     func showAlert(message: String) {
-        let alertController = UIAlertController(title: "Log In", message: message, preferredStyle: .alert)
+        let alertController = UIAlertController(title: "\(NSLocalizedString("logIn", comment: ""))", message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         present(alertController, animated: true, completion: nil)
     }

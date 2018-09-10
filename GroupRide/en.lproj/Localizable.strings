@@ -1,0 +1,55 @@
+/* 
+  Localizable.strings
+  GroupRide
+
+  Created by Krysta Deluca on 9/9/18.
+  Copyright © 2018 Krysta Deluca. All rights reserved.
+*/
+
+//Log In
+"emailAndPasswordEntry" = "Enter an email and a password.";
+"noUsers" = "There are no users with the specified account.";
+"incorrectLogIn" = "Incorrect username or password.";
+"logIn" = "Log In";
+
+//Sign Up
+"missingInfo" = "Enter a name, an email and a password.";
+"invalidEmail" = "Enter a valid email.";
+"emailInUse" = "Email already in use.";
+"signUp" = "Sign Up";
+
+//Map
+"trackingLocation" = "Tracking Location";
+"trackLocation" = "Track Location";
+"locationTracking" = "Location Tracking";
+"enableLocationTracking" = "To track your ride, you must enable location tracking in Settings";
+"cancel" = "Cancel";
+"settings" = "Settings";
+"rideName" = "Ride Name";
+"enterRideName" = "To track your ride, please enter the name of the ride.";
+"save" = "Save";
+"rideNamePlaceholder" = "Ride Name...";
+"unableToTrackLocation" = "Unable to track your location at this time.";
+"noRideProvided" = "No ride provided";
+"noUsernameProvided" = "No username provided";
+
+//Calendar
+"rideCalendar" = "Ride Calendar";
+
+//Ride Detail
+"noRideDescription" = "Could not find ride description.";
+
+//Profile
+"name" = "Name";
+"username" = "Username";
+"ride" = "Ride";
+"bike" = "Bike";
+"description" = "Description";
+"noNameSaved" = "No name saved.";
+"noUsernameSaved" = "No username saved.";
+"noRideSaved" = "No ride saved.";
+"noBikeSaved" = "No bike saved.";
+"noDescriptionSaved" = "No description saved";
+"emptyName" = "You must enter a name.";
+"emptyUsername" = "You must enter a username.";
+"logOut" = "Log Out";

@@ -26,11 +26,11 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Group Ride requires your location in order to find nearby rides and track your ride.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string></string>
+	<string>Group Ride requires your location in order to find nearby rides and track your ride.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Group Ride requires your location in order to find nearby rides and track your ride.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

@@ -10,6 +10,7 @@
 		572BFD459580A1F2FDA8B60F /* Pods_GroupRide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697EAC55A0DE77513D7DD311 /* Pods_GroupRide.framework */; };
 		7002B6352111094A00DC0979 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7002B6342111094A00DC0979 /* CustomTableViewCell.swift */; };
 		700B722E21451D5F00472449 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 700B722D21451D5F00472449 /* GoogleService-Info.plist */; };
+		700B7235214645C200472449 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 700B7237214645C200472449 /* Localizable.strings */; };
 		7012D33D20BE060400CB1252 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7012D33C20BE060300CB1252 /* CalendarViewController.swift */; };
 		7012D34820BE554900CB1252 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7012D34720BE554900CB1252 /* CustomCell.swift */; };
 		703251282113EE20005E6EB1 /* EditProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703251272113EE20005E6EB1 /* EditProfileTableViewCell.swift */; };
@@ -58,6 +59,10 @@
 		7002B6342111094A00DC0979 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomTableViewCell.swift; path = "GroupRide/Custom Classes/CustomTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		7006C9E1211CEAEB00506EAF /* GroupRide-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "GroupRide-Bridging-Header.h"; path = "GroupRide/GroupRide-Bridging-Header.h"; sourceTree = "<group>"; };
 		700B722D21451D5F00472449 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		700B722F21463B8C00472449 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		700B723021463B8D00472449 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		700B7236214645C200472449 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		700B7238214645C700472449 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7012D33C20BE060300CB1252 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		7012D34720BE554900CB1252 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomCell.swift; path = "GroupRide/Custom Classes/CustomCell.swift"; sourceTree = SOURCE_ROOT; };
 		7026A4EA211CEBDB0036544B /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
@@ -238,6 +243,7 @@
 			children = (
 				70DDFC7720A38F2100AEB96F /* Info.plist */,
 				700B722D21451D5F00472449 /* GoogleService-Info.plist */,
+				700B7237214645C200472449 /* Localizable.strings */,
 				70DDFC6920A38F2100AEB96F /* AppDelegate.swift */,
 				70DDFC7220A38F2100AEB96F /* Assets.xcassets */,
 				7012D34620BE1C5500CB1252 /* Storyboards */,
@@ -346,6 +352,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 70DDFC5D20A38F2100AEB96F;
 			productRefGroup = 70DDFC6720A38F2100AEB96F /* Products */;
@@ -363,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70DDFC7620A38F2100AEB96F /* LaunchScreen.storyboard in Resources */,
+				700B7235214645C200472449 /* Localizable.strings in Resources */,
 				70DDFC7320A38F2100AEB96F /* Assets.xcassets in Resources */,
 				700B722E21451D5F00472449 /* GoogleService-Info.plist in Resources */,
 				70DDFC7120A38F2100AEB96F /* Main.storyboard in Resources */,
@@ -480,10 +488,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		700B7237214645C200472449 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				700B7236214645C200472449 /* en */,
+				700B7238214645C700472449 /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		70DDFC6F20A38F2100AEB96F /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				70DDFC7020A38F2100AEB96F /* Base */,
+				700B723021463B8D00472449 /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -492,6 +510,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				70DDFC7520A38F2100AEB96F /* Base */,
+				700B722F21463B8C00472449 /* es */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -503,6 +522,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -564,6 +584,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
