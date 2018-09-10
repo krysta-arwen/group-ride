@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GroupRide/View Controllers/MapViewController.swift"
-            timestampString = "558230069.75869"
+            timestampString = "558234790.402601"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
-            landmarkName = "observeQuery()"
+            startingLineNumber = "305"
+            endingLineNumber = "305"
+            landmarkName = "getRideName(uid:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

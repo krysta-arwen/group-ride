@@ -16,17 +16,18 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var buttonTopConstraint: NSLayoutConstraint!
+    
     var queryAdded = false
     var rideTextField: UITextField!
     var saveAction: UIAlertAction!
     var userLocation: CLLocation!
     var circleQuery: GFSQuery!
     var mapMarkers: [GMSMarker]!
-    
 
     private let locationManager = CLLocationManager()
     
     let userDefaultsKey = "TrackingLocation"
+    let uid = UserDefaults.standard.string(forKey: "uid")
     let db = Firestore.firestore()
     let geoFirestore = GeoFirestore(collectionRef: Firestore.firestore().collection("userLocations"))
     
@@ -166,17 +167,14 @@ class MapViewController: UIViewController {
     }
     
     func trackUserLocation(rideName: String) {
-        let username = UserDefaults.standard.string(forKey: "Username")
-        
-//        locationManager.startUpdatingLocation()
+        locationManager.startUpdatingLocation()
         
         //Create firestore document
-        if let location = userLocation, let uid = UserDefaults.standard.string(forKey: "uid") {
+        if let location = userLocation, let uid = uid {
             geoFirestore.setLocation(location: location, forDocumentWithID: uid)
             
             //Save rider's name and ride's name
-            db.collection("userLocations").document(uid).setData([
-                "username" : username!,
+            db.collection("users").document(uid).setData([
                 "ride" : rideName
             ], merge: true) { err in
                 if let err = err {
@@ -204,13 +202,12 @@ class MapViewController: UIViewController {
         let geoFirestoreRef = Firestore.firestore().collection("userLocations")
         let geoFirestore = GeoFirestore(collectionRef: geoFirestoreRef)
         
-        if let uid = UserDefaults.standard.string(forKey: "uid") {
+        if let uid = uid {
             //Remove location from collection
             geoFirestore.removeLocation(forDocumentWithID: uid)
             
-            //Remove username and ride from collection
-            db.collection("userLocations").document(uid).updateData([
-                "username": FieldValue.delete(),
+            //Remove ride from collection
+            db.collection("users").document(uid).updateData([
                 "ride": FieldValue.delete()
                 ]) { err in
                     if let err = err {
@@ -220,8 +217,6 @@ class MapViewController: UIViewController {
                     }
             }
         }
-        
-        locationManager.stopUpdatingLocation()
     }
     
     //Check if user is currently tracking location
@@ -238,10 +233,10 @@ class MapViewController: UIViewController {
             let entryQueryHandle = circleQuery.observe(.documentEntered, with: { (key, location) in
                 print("The document with documentID '\(key)' entered the search area and is at location '\(location)'")
                 
-                if key != UserDefaults.standard.string(forKey: "uid") {
+                if key != self.uid {
                     let bikeMarker = GMSMarker()
                     bikeMarker.title = self.getRiderName(uid: key!)
-                    bikeMarker.snippet = self.getRideName(uid: key!)
+//                    bikeMarker.snippet = self.getRideName(uid: key!)
                     bikeMarker.userData = key
                     bikeMarker.position = CLLocationCoordinate2D(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
                     bikeMarker.map = self.mapView
@@ -253,7 +248,7 @@ class MapViewController: UIViewController {
             let exitQueryHandle = circleQuery.observe(.documentExited, with: { (key, location) in
                 print("The document with documentID '\(key)' entered the search area and is at location '\(location)'")
                 
-                if key != UserDefaults.standard.string(forKey: "uid") {
+                if key != self.uid {
                     if let mapMarkers = self.mapMarkers {
                         for marker in mapMarkers {
                             if marker.userData as! String == key {
@@ -270,7 +265,7 @@ class MapViewController: UIViewController {
             let moveQueryHandle = circleQuery.observe(.documentMoved, with: { (key, location) in
                 print("The document with documentID '\(key)' entered the search area and is at location '\(location)'")
                 
-                if key != UserDefaults.standard.string(forKey: "uid") {
+                if key != self.uid {
                     //Remove previous marker
                     if let mapMarkers = self.mapMarkers {
                         for marker in mapMarkers {
@@ -284,8 +279,8 @@ class MapViewController: UIViewController {
                     
                     //Add new marker
                     let bikeMarker = GMSMarker()
-                    bikeMarker.title = self.getRiderName(uid: key!)
-                    bikeMarker.snippet = self.getRideName(uid: key!)
+                    bikeMarker.snippet = self.getRiderName(uid: key!)
+//                    bikeMarker.title = self.getRideName(uid: key!)
                     bikeMarker.userData = key
                     bikeMarker.position = CLLocationCoordinate2D(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
                     bikeMarker.map = self.mapView
@@ -316,7 +311,7 @@ class MapViewController: UIViewController {
     
     func getRiderName(uid: String) -> String {
         var rider = "No username provided"
-        let docRef = db.collection("userLocations").document(uid)
+        let docRef = db.collection("users").document(uid)
         
         docRef.getDocument { (document, error) in
             guard let document = document else {
@@ -353,11 +348,13 @@ extension UIButton {
 
 //Conform map view controller to protocol
 extension MapViewController: CLLocationManagerDelegate {
+    
     //User changes location permission
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         guard status == .authorizedWhenInUse || status == .authorizedAlways else {
             return
         }
+        
         locationManager.startUpdatingLocation()
         
         //Adds blue dot for current location and centering on user's location

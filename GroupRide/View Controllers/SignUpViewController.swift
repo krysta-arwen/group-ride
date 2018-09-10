@@ -18,7 +18,6 @@ class SignUpViewController: UIViewController {
     var ref: DocumentReference!
     let db = Firestore.firestore()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -74,22 +73,22 @@ class SignUpViewController: UIViewController {
                 self.setUserName(user: user, name: name)
                 UserDefaults.standard.set(name as String, forKey: "Username")
                 UserDefaults.standard.set(user.uid as String, forKey: "uid")
-            }
-            
-            //Save profile to user collection
-            self.ref = self.db.collection("users").addDocument(data: [
-                "username": name,
-                "email": email,
-                "uid": Auth.auth().currentUser?.uid
-            ]) { error in
-                if let error = error {
-                    print("Error adding document: \(error)")
-                } else {
-                    print("Document added with ID: \(self.ref!.documentID)")
+                UserDefaults.standard.synchronize()
+                                
+                //Save profile to user collection
+                self.db.collection("users").document(user.uid).setData([
+                    "username": name,
+                    "email": email,
+                    "uid": Auth.auth().currentUser?.uid
+                ]) { error in
+                    if let error = error {
+                        print("Error adding document: \(error)")
+                    } else {
+                        print("Document added with ID: \(self.ref!.documentID)")
+                    }
                 }
             }
         }
-        
     }
     
     func setUserName(user: User, name: String) {

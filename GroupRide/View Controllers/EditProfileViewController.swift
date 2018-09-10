@@ -99,7 +99,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
         let nameCell = editTableView.cellForRow(at: indexPath) as! EditProfileTableViewCell
         nameCell.errorLabel.alpha = 0
         
-        if descriptions[0] == "No name saved." {
+        if descriptions[0] == "No name saved." || descriptions[0] == "" {
             nameCell.errorLabel.text = "You must enter a name."
             UIView.animate(withDuration: 1) {
                 nameCell.errorLabel.alpha = 1
@@ -111,7 +111,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
         let usernameCell = editTableView.cellForRow(at: indexPath) as! EditProfileTableViewCell
         usernameCell.errorLabel.alpha = 0
         
-        if descriptions[1] == "No username saved." {
+        if descriptions[1] == "No username saved." || descriptions[1] == "" {
             usernameCell.errorLabel.text = "You must enter a username."
             UIView.animate(withDuration: 1) {
                 usernameCell.errorLabel.alpha = 1
@@ -126,10 +126,30 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
     func saveProfile() {
         let userDefaults = UserDefaults.standard
         userDefaults.set(descriptions[0], forKey: "Name")
-        userDefaults.set(descriptions[1], forKey: "Username")
+        saveUsername()
         userDefaults.set(descriptions[2], forKey: "Ride")
         userDefaults.set(descriptions[3], forKey: "Bike")
         userDefaults.set(descriptions[4], forKey: "Description")
+        userDefaults.synchronize()
+    }
+    
+    func saveUsername() {
+        if UserDefaults.standard.string(forKey: "Username") != descriptions[1] {
+            if let user = Auth.auth().currentUser {
+                //Create request to change username in firebase profile
+                let changeRequest = user.createProfileChangeRequest()
+                changeRequest.displayName = descriptions[1]
+                
+                changeRequest.commitChanges(){ (error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        return
+                    }
+                }
+            }
+        }
+        
+        UserDefaults.standard.set(descriptions[1], forKey: "Username")
     }
     
     //Set up table view
@@ -167,7 +187,8 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
 extension EditProfileViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        if let value = textView.text {
+        if var value = textView.text {
+            value = value.trimmingCharacters(in: .whitespacesAndNewlines)
             descriptions[textView.tag] = value
         }
     }

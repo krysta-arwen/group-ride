@@ -10,6 +10,7 @@ import UIKit
 import GoogleMaps
 import CoreData
 import FirebaseAuth
+import Geofirestore
 
 let googleApiKey = "AIzaSyB7Gkb2dDegsjtXev88uggqOQVT2vwgnfM"
 
@@ -66,6 +67,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         UserDefaults.standard.set(false, forKey: "TrackingLocation")
+        
+        //Remove location information from firestore
+        let geoFirestoreRef = Firestore.firestore().collection("userLocations")
+        let geoFirestore = GeoFirestore(collectionRef: geoFirestoreRef)
+        let db = Firestore.firestore()
+        
+        if let uid = UserDefaults.standard.string(forKey: "uid") {
+            //Remove location from collection
+            geoFirestore.removeLocation(forDocumentWithID: uid)
+            
+            //Remove ride from collection
+            db.collection("users").document(uid).updateData([
+                "ride": FieldValue.delete()
+            ]) { err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    print("Document successfully updated")
+                }
+            }
+        }
     }
 
     // MARK: - Core Data stack

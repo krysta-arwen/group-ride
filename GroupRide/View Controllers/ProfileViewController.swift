@@ -108,12 +108,23 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             descriptions.append("No description saved.")
         }
+        
+        profileTableView.reloadData()
     }
     
     @objc func logOutTapped(sender: UIButton) {
         
         do {
             try Auth.auth().signOut()
+            
+            UserDefaults.standard.set(false, forKey: "LoggedIn")
+            UserDefaults.standard.set(false, forKey: "TrackingLocation")
+            UserDefaults.standard.removeObject(forKey: "uid")
+            UserDefaults.standard.removeObject(forKey: "Username")
+            UserDefaults.standard.removeObject(forKey: "Ride")
+            UserDefaults.standard.removeObject(forKey: "Bike")
+            UserDefaults.standard.removeObject(forKey: "Description")
+            UserDefaults.standard.synchronize()
             
             //Set rootview to log in screen after log out
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -123,9 +134,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             appDelegate.window!.rootViewController = rootViewController
             appDelegate.window!.makeKeyAndVisible()
-            
-            UserDefaults.standard.set(false, forKey: "LoggedIn")
-            UserDefaults.standard.synchronize()
         } catch let error as NSError {
             print (error.localizedDescription)
         }
