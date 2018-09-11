@@ -53,3 +53,9 @@
 "emptyName" = "Debes ingresar un nombre.";
 "emptyUsername" = "Debes ingresar un nombre de usuario.";
 "logOut" = "Cerrar Sesión";
+
+//Edit Profile
+"access" = "Permiso";
+"enableCameraAccess" = "Para tomar una foto o cargar desde el carrete de la cámara, debe dar permiso en Configuración.";
+"videoChosen" = "Video Elegido";
+"cannotChooseVideo" = "Lo sentimos, no puedes elegir un video para tu foto de perfil.";

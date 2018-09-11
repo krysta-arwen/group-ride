@@ -10,10 +10,13 @@ import UIKit
 
 class PhotoViewController: UIViewController {
 
+    @IBOutlet weak var fullScreenImage: UIImageView!
+    var profileImage: UIImage!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        fullScreenImage.image = profileImage
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,7 +26,9 @@ class PhotoViewController: UIViewController {
     
 
     @IBAction func doneButtonTapped(_ sender: Any) {
+        let parameters = ["Email" : UserDefaults.standard.object(forKey: "Email")]
+        Analytics.logEvent("exitedPictureFullScreen", parameters: parameters)
+        
         dismiss(animated: true, completion: nil)
     }
-
 }

@@ -6,16 +6,28 @@
 //  Copyright © 2018 Krysta Deluca. All rights reserved.
 //
 
+import Photos
+import PhotosUI
 import UIKit
+import Firebase
 
 class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var editTableView: UITableView!
+    @IBOutlet weak var profilePictureView: UIImageView!
+    
+    var imagePickedBlock: ((UIImage) -> Void)?
     var activeTextView: UITextView?
+    let uid = UserDefaults.standard.string(forKey: "uid")
+    let notificationName = Notification.Name("myNotificationName")
     
     let titles = ["\(NSLocalizedString("name", comment: ""))", "\(NSLocalizedString("username", comment: ""))", "\(NSLocalizedString("ride", comment: ""))", "\(NSLocalizedString("bike", comment: ""))", "\(NSLocalizedString("description", comment: ""))"]
     var descriptions: [String]!
     var textLimitLength = 20
+    
+    enum AttachmentType: String{
+        case camera, photoLibrary
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +43,52 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
          let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
+        
+        //Trim profile picture
+        profilePictureView.layer.cornerRadius = profilePictureView.frame.height / 2.0
+        profilePictureView.clipsToBounds = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
-
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        //Move view up when keyboard will show
+        self.view.frame.origin.y = -100
+    }
+    
+    @objc func keyboardHidden(notification: NSNotification) {
+        self.view.frame.origin.y = 0
+    }
+    
+    @IBAction func editButtonTapped(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "Picture Upload", message: "Where would you like to upload your photo from?", preferredStyle: .actionSheet)
+        
+        let cameraButton = UIAlertAction(title: "Camera", style: .default, handler: { (action) -> Void in
+            self.authorisationStatus(attachmentTypeEnum: .camera, sender: sender)
+        })
+        
+        let cameraRollButton = UIAlertAction(title: "Camera Roll", style: .default, handler: { (action) -> Void in
+            self.authorisationStatus(attachmentTypeEnum: .photoLibrary, sender: sender)
+        })
+        
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
+            print("Cancel button tapped")
+        })
+        
+        
+        alertController.addAction(cameraRollButton)
+        alertController.addAction(cameraButton)
+        alertController.addAction(cancelButton)
+        
+        self.navigationController!.present(alertController, animated: true, completion: nil)
+    }
+    
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         //If there are any empty fields, don't exit view
         view.endEditing(true)
@@ -62,6 +114,112 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    //Check status to access camera
+    func authorisationStatus(attachmentTypeEnum: AttachmentType, sender: UIButton){
+        
+        let status = PHPhotoLibrary.authorizationStatus()
+        switch status {
+        case .authorized:
+            if attachmentTypeEnum == AttachmentType.camera{
+                openCamera()
+            }
+            if attachmentTypeEnum == AttachmentType.photoLibrary{
+                photoLibrary()
+            }
+        case .denied:
+            print("permission denied")
+            self.addAlertForSettings(sender: sender)
+        case .notDetermined:
+            print("Permission Not Determined")
+            PHPhotoLibrary.requestAuthorization({ (status) in
+                if status == PHAuthorizationStatus.authorized{
+                    // photo library access given
+                    print("access given")
+                    if attachmentTypeEnum == AttachmentType.camera{
+                        self.openCamera()
+                    }
+                    if attachmentTypeEnum == AttachmentType.photoLibrary{
+                        self.photoLibrary()
+                    }
+                }else{
+                    print("restriced manually")
+                    self.addAlertForSettings(sender: sender)
+                }
+            })
+        case .restricted:
+            print("permission restricted")
+            self.addAlertForSettings(sender: sender)
+        default:
+            break
+        }
+    }
+    
+    func openCamera(){
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            let myPickerController = UIImagePickerController()
+            myPickerController.delegate = self
+            myPickerController.sourceType = .camera
+            self.present(myPickerController, animated: true, completion: nil)
+        }
+    }
+    
+    func photoLibrary(){
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+            let myPickerController = UIImagePickerController()
+            myPickerController.delegate = self
+            myPickerController.sourceType = .photoLibrary
+            self.present(myPickerController, animated: true, completion: nil)
+        }
+    }
+    
+    //Upload image to Firebase Storage
+    func uploadImage(image: UIImage) {
+        var data = NSData()
+        data = UIImageJPEGRepresentation(image, 0.8)! as NSData
+        
+        //Set upload path
+        let filePath = "\(uid!)"
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpg"
+        
+        let storageRef = Storage.storage().reference()
+        storageRef.child(filePath).putData(data as Data, metadata: metaData){(metaData,error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            } else {
+                //Get downloadURL
+                storageRef.downloadURL { (url, error) in
+                    guard let downloadURL = url else { return }
+                    print(downloadURL)
+                }
+            }
+        }
+    }
+    
+    //Alert user to change camera permissions
+    func addAlertForSettings(sender: UIButton) {
+        let alertController = UIAlertController(title: "\(NSLocalizedString("access", comment: ""))", message: "\(NSLocalizedString("enableCameraAccess", comment: ""))", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "\(NSLocalizedString("cancel", comment: ""))", style: .cancel) { (alert) in
+            print("User tapped Cancel")
+        }
+        
+        let settingsAction = UIAlertAction(title: "\(NSLocalizedString("settings", comment: ""))", style: .default, handler: { (alert) in
+            if let appSettings = URL(string: UIApplicationOpenSettingsURLString) {
+                UIApplication.shared.openURL(appSettings)
+            }
+        })
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(settingsAction)
+        
+        alertController.popoverPresentationController?.sourceRect = sender.frame
+        alertController.popoverPresentationController?.sourceView = view
+        
+        present(alertController, animated: true, completion: nil)
     }
     
     //Check if there is a saved profile
@@ -140,6 +298,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
         userDefaults.synchronize()
     }
     
+    //Save username to profile
     func saveUsername() {
         if UserDefaults.standard.string(forKey: "Username") != descriptions[1] {
             if let user = Auth.auth().currentUser {
@@ -153,12 +312,10 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
                         return
                     }
                 }
-                
                 let parameters = ["Email" : UserDefaults.standard.object(forKey: "Email"), "New Username" : descriptions[1]]
                 Analytics.logEvent("userUpdatedUsername", parameters: parameters)
             }
         }
-        
         UserDefaults.standard.set(descriptions[1], forKey: "Username")
     }
     
@@ -191,6 +348,32 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44.0;
+    }
+}
+
+extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        // To handle image
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            self.profilePictureView.image = pickedImage
+            uploadImage(image: pickedImage)
+            NotificationCenter.default.post(name: self.notificationName, object: nil, userInfo: ["image": pickedImage])
+        } else{
+            print("Something went wrong in  image")
+        }
+        
+        // To handle video
+        if let videoUrl = info[UIImagePickerControllerMediaURL] as? NSURL{
+            //Pop alert
+            let alertController = UIAlertController(title: "\(NSLocalizedString("videoChosen", comment: ""))", message: "\(NSLocalizedString("cannotChooseVideo", comment: ""))", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            present(alertController, animated: true, completion: nil)
+        }
+        else{
+            print("Something went wrong in  video")
+        }
+        self.dismiss(animated: true, completion: nil)
     }
 }
 

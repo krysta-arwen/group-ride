@@ -11,5 +11,6 @@ pod 'JTAppleCalendar'
 pod 'Alamofire', '~> 4.0'
 pod 'Kanna'
 pod 'Geofirestore'
+pod 'FirebaseUI/Storage'
 
 end

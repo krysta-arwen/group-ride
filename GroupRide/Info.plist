@@ -28,11 +28,15 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Group Ride requires your location in order to find nearby rides and track your ride.</string>
+	<string>Ride Chaser requires your location in order to find nearby rides and track your ride.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Group Ride requires your location in order to find nearby rides and track your ride.</string>
+	<string>Ride Chaser requires your location in order to find nearby rides and track your ride.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Group Ride requires your location in order to find nearby rides and track your ride.</string>
+	<string>Ride Chaser requires your location in order to find nearby rides and track your ride.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Ride Chaser would like access to you camera.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Ride Chaser would like access to your camera roll.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

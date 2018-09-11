@@ -53,3 +53,9 @@
 "emptyName" = "You must enter a name.";
 "emptyUsername" = "You must enter a username.";
 "logOut" = "Log Out";
+
+//Edit Profile
+"access" = "Access";
+"enableCameraAccess" = "To take a picture or upload from the camera roll, you must give permission in Settings.";
+"videoChosen" = "Video Chosen";
+"cannotChooseVideo" = "Sorry, you cannot choose a video for your profile picture.";

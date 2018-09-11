@@ -8,6 +8,8 @@
 
 import UIKit
 import FirebaseAuth
+import Alamofire
+import FirebaseUI
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate {
 
@@ -16,6 +18,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     let titles = ["\(NSLocalizedString("name", comment: ""))", "\(NSLocalizedString("username", comment: ""))", "\(NSLocalizedString("ride", comment: ""))", "\(NSLocalizedString("bike", comment: ""))", "\(NSLocalizedString("description", comment: ""))"]
     var descriptions: [String]!
+    let notificationName = Notification.Name("myNotificationName")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +27,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         updateProfile()
         
         //Trim profile picture
+        setProfilePicture()
         profilePicture.layer.cornerRadius = profilePicture.frame.height / 2.0
         profilePicture.clipsToBounds = true
         
@@ -44,12 +48,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         logOutButton.addTarget(self, action: #selector(self.logOutTapped(sender:)), for: .touchUpInside)
         
         footerView.addSubview(logOutButton)
-        
         profileTableView.tableFooterView = footerView
         
         profileTableView.delegate = self
         profileTableView.dataSource = self
         profileTableView.alwaysBounceVertical = false
+        
+        //Add notification for updating profile picture
+        NotificationCenter.default.addObserver(self, selector: #selector(self.pictureUpdated(notification:)), name: self.notificationName, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,6 +71,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if segue.identifier == "ShowImageFullScreen" {
             let toViewController = segue.destination as UIViewController
             toViewController.transitioningDelegate = self
+            
+            let fullScreenVC = segue.destination as! PhotoViewController
+            fullScreenVC.profileImage = profilePicture.image
         }
     }
     
@@ -87,6 +96,22 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         customModalAnimator.pushing = false
         
         return customModalAnimator
+    }
+    
+    func setProfilePicture() {
+        if let user = Auth.auth().currentUser {
+            let storageRef = Storage.storage().reference()
+            let filePath = user.uid
+            let reference = storageRef.child(filePath)
+            profilePicture.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "defaultProfilePicture"))
+        }
+    }
+
+    @objc func pictureUpdated(notification: NSNotification) {
+        let image: UIImage? = notification.userInfo!["image"] as! UIImage
+        if image != nil {
+            profilePicture.image = image
+        }
     }
     
     //Unwind segue for edit profile

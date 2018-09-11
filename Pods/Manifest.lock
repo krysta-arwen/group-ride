@@ -16,6 +16,9 @@ PODS:
   - Firebase/Database (5.6.0):
     - Firebase/CoreOnly
     - FirebaseDatabase (= 5.0.2)
+  - Firebase/Storage (5.6.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (= 3.0.0)
   - FirebaseAnalytics (5.1.1):
     - FirebaseCore (~> 5.1)
     - FirebaseInstanceID (~> 3.2)
@@ -49,6 +52,12 @@ PODS:
   - FirebaseInstanceID (3.2.1):
     - FirebaseCore (~> 5.1)
     - GoogleUtilities/Environment (~> 5.2)
+  - FirebaseStorage (3.0.0):
+    - FirebaseCore (~> 5.0)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseUI/Storage (5.2.0):
+    - Firebase/Storage (~> 5.0)
+    - SDWebImage (~> 4.0)
   - GeoFire (3.0.0):
     - Firebase/Database (~> 5.0)
   - Geofirestore (1.2.0):
@@ -104,6 +113,7 @@ PODS:
   - gRPC/Main (1.14.1):
     - gRPC-Core (= 1.14.1)
     - gRPC-RxLibrary (= 1.14.1)
+  - GTMSessionFetcher/Core (1.2.0)
   - JTAppleCalendar (7.1.5)
   - Kanna (4.0.0)
   - leveldb-library (1.20)
@@ -113,9 +123,13 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Protobuf (3.6.1)
+  - SDWebImage (4.4.2):
+    - SDWebImage/Core (= 4.4.2)
+  - SDWebImage/Core (4.4.2)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
+  - FirebaseUI/Storage
   - Geofirestore
   - GoogleMaps
   - JTAppleCalendar
@@ -132,6 +146,8 @@ SPEC REPOS:
     - FirebaseDatabase
     - FirebaseFirestore
     - FirebaseInstanceID
+    - FirebaseStorage
+    - FirebaseUI
     - GeoFire
     - Geofirestore
     - GoogleAppMeasurement
@@ -141,11 +157,13 @@ SPEC REPOS:
     - gRPC-Core
     - gRPC-ProtoRPC
     - gRPC-RxLibrary
+    - GTMSessionFetcher
     - JTAppleCalendar
     - Kanna
     - leveldb-library
     - nanopb
     - Protobuf
+    - SDWebImage
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
@@ -157,6 +175,8 @@ SPEC CHECKSUMS:
   FirebaseDatabase: 27be5ac5bc75e0b17537b2bbfada8258addcc8cd
   FirebaseFirestore: e953e8e02544cc60372f3787d4c30cb47a691aa7
   FirebaseInstanceID: ea5af6920d0a4a29b40459d055bebe4a6c1333c4
+  FirebaseStorage: 7ca4bb7b58a25fa647b04f524033fc7cb7eb272b
+  FirebaseUI: 9dfa423b6f1b73737ae8ab62692c1c0a8886186d
   GeoFire: e3ae6f4be3f2466c3467ef6c1c203db3af935c59
   Geofirestore: ad548ea5e3c1ae595c746c7b796df5534d8202f3
   GoogleAppMeasurement: f7507b39b70ad0bd80b3d81518b2f43868974307
@@ -166,12 +186,14 @@ SPEC CHECKSUMS:
   gRPC-Core: e3ace1e1161e75903135de8d8231bb69c9d35721
   gRPC-ProtoRPC: 78f976fc6a1eafc0e1f4965c255c313aa0859b1e
   gRPC-RxLibrary: c4c826507ad3c8c8fab6887f153938eb04b86d59
+  GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   JTAppleCalendar: 2d4f974f9f3c8b4964d51ca1f6e004883c031fbe
   Kanna: d5ae2a26472f7e7a474e7f36a9cd8aa2c8c63ad3
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
 
-PODFILE CHECKSUM: 514e95db6e1d3ed216bc6c82508711c11178b33f
+PODFILE CHECKSUM: 48b9889db80509654f32921195b7645fae3d31a5
 
 COCOAPODS: 1.5.3
