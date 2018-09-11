@@ -46,11 +46,17 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
         } else {
             return
         }
+        
+        let parameters = ["Email" : UserDefaults.standard.object(forKey: "Email")]
+        Analytics.logEvent("userSavedProfile", parameters: parameters)
             
         performSegue(withIdentifier: "returnToProfile", sender: self)
     }
 
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        let parameters = ["Email" : UserDefaults.standard.object(forKey: "Email")]
+        Analytics.logEvent("userCancelledEdit", parameters: parameters)
+        
         performSegue(withIdentifier: "returnToProfile", sender: self)
     }
     
@@ -147,6 +153,9 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
                         return
                     }
                 }
+                
+                let parameters = ["Email" : UserDefaults.standard.object(forKey: "Email"), "New Username" : descriptions[1]]
+                Analytics.logEvent("userUpdatedUsername", parameters: parameters)
             }
         }
         

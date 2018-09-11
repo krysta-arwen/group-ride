@@ -53,6 +53,9 @@ class SignUpViewController: UIViewController {
             password.count > 0
             else {
                 self.showAlert(message: "\(NSLocalizedString("missingInfo", comment: ""))")
+                
+                let parameters = [String : Any]()
+                Analytics.logEvent("missingSignInInfo", parameters: parameters)
                 return
         }
         
@@ -61,10 +64,19 @@ class SignUpViewController: UIViewController {
             if let error = error {
                 if error._code == AuthErrorCode.invalidEmail.rawValue {
                     self.showAlert(message: "\(NSLocalizedString("invalidEmail", comment: ""))")
+                    
+                    let parameters = ["Error" : error._code]
+                    Analytics.logEvent("invalidEmail", parameters: parameters)
                 } else if error._code == AuthErrorCode.emailAlreadyInUse.rawValue {
                     self.showAlert(message: "\(NSLocalizedString("emailInUse", comment: ""))")
+                    
+                    let parameters = ["Error" : error._code]
+                    Analytics.logEvent("emailInUse", parameters: parameters)
                 } else {
                     self.showAlert(message: "Error: \(error.localizedDescription)")
+                    
+                    let parameters = ["Error" : error._code]
+                    Analytics.logEvent("miscellaneousSignUpError", parameters: parameters)
                 }
                 print(error.localizedDescription)
                 return
@@ -74,6 +86,7 @@ class SignUpViewController: UIViewController {
                 self.setUserName(user: user, name: name)
                 UserDefaults.standard.set(name as String, forKey: "Username")
                 UserDefaults.standard.set(user.uid as String, forKey: "uid")
+                UserDefaults.standard.set(user.email as! String, forKey: "Email")
                 UserDefaults.standard.synchronize()
                                 
                 //Save profile to user collection
@@ -107,6 +120,9 @@ class SignUpViewController: UIViewController {
             AuthenticationManager.sharedInstance.didLogIn(user: user)
             UserDefaults.standard.set(true, forKey: "Logged In")
             UserDefaults.standard.synchronize()
+            
+            let parameters = ["Email" : user.email]
+            Analytics.logEvent("signUpSuccessful", parameters: parameters)
             self.performSegue(withIdentifier: "ShowMapFromSignUp", sender: nil)
         }
     }

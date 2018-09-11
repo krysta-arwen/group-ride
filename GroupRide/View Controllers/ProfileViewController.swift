@@ -69,6 +69,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @objc func imageTapped(tapGestureRecognezer: UITapGestureRecognizer) {
+        let parameters = ["Email" : UserDefaults.standard.object(forKey: "Email")]
+        Analytics.logEvent("viewProfilePictureFullscreen", parameters: parameters)
+        
         self.performSegue(withIdentifier: "ShowImageFullScreen", sender: nil)
     }
     
@@ -137,7 +140,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             UserDefaults.standard.removeObject(forKey: "Ride")
             UserDefaults.standard.removeObject(forKey: "Bike")
             UserDefaults.standard.removeObject(forKey: "Description")
+            UserDefaults.standard.removeObject(forKey: "Email")
             UserDefaults.standard.synchronize()
+            
+            let parameters = ["Email" : UserDefaults.standard.object(forKey: "Email")]
+            Analytics.logEvent("logOut", parameters: parameters)
             
             //Set rootview to log in screen after log out
             let appDelegate = UIApplication.shared.delegate as! AppDelegate

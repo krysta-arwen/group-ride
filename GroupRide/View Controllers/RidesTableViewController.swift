@@ -79,6 +79,10 @@ class RidesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedRideName = rideNames[indexPath.row]
+        
+        let parameters = ["Email" : UserDefaults.standard.object(forKey: "Email"), "Selected Ride Name" : selectedRideName]
+        Analytics.logEvent("selectedRide", parameters: parameters)
+        
         self.performSegue(withIdentifier: "ShowRideDetail", sender: nil)
     }
     

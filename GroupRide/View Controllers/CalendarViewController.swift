@@ -229,6 +229,9 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
         UserDefaults.standard.set(selectedDate, forKey: "SelectedDate")
         
         if validCell.redIndicator.isHidden == false {
+            let parameters = ["Email" : UserDefaults.standard.object(forKey: "Email"), "Selected Date" : selectedDate]
+            Analytics.logEvent("selectedDate", parameters: parameters)
+            
             self.performSegue(withIdentifier: "ShowRidesPage", sender: nil)
         }
     }

@@ -91,6 +91,9 @@ class MapViewController: UIViewController {
     
     //Show notification to allow location tracking
     func showLocationAlert(sender: UIButton) {
+        let parameters = ["Email" : UserDefaults.standard.object(forKey: "Email")]
+        Analytics.logEvent("enableLocationTracking", parameters: parameters)
+        
         let alertController = UIAlertController(title: "\(NSLocalizedString("locationTracking", comment: ""))", message: "\(NSLocalizedString("enableLocationTracking", comment: ""))", preferredStyle: .alert)
         
         let cancelAction = UIAlertAction(title: "\(NSLocalizedString("cancel", comment: ""))", style: .cancel) { (alert) in
@@ -118,6 +121,9 @@ class MapViewController: UIViewController {
             case .notDetermined, .restricted, .denied:
                 print("No access")
                 showLocationAlert(sender: sender)
+                
+                let parameters = ["Email" : UserDefaults.standard.object(forKey: "Email")]
+                Analytics.logEvent("noLocationAccess", parameters: parameters)
                 
             case .authorizedAlways, .authorizedWhenInUse:
                 print("Access")
@@ -184,6 +190,10 @@ class MapViewController: UIViewController {
                 }
             }
             
+            //Analytics
+            let parameters = ["Email" : UserDefaults.standard.object(forKey: "Email"), "Ride Name" : rideName]
+            Analytics.logEvent("trackingLocation", parameters: parameters)
+            
             //Set button title
             locationButton.setTitle("\(NSLocalizedString("trackingLocation", comment: ""))", for: .normal)
             UserDefaults.standard.set(true, forKey: userDefaultsKey)
@@ -192,6 +202,10 @@ class MapViewController: UIViewController {
             let alertController = UIAlertController(title: "\(NSLocalizedString("locationTracking", comment: ""))", message: "\(NSLocalizedString("unableToTrackLocation", comment: ""))", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             present(alertController, animated: true, completion: nil)
+            
+            //Analytics
+            let parameters = ["Email" : UserDefaults.standard.object(forKey: "Email"), "Ride Error" : "\(NSLocalizedString("unableToTrackLocation", comment: ""))"]
+            Analytics.logEvent("failedToTrackLocation", parameters: parameters)
             
             locationButton.setTitle("\(NSLocalizedString("trackLocation", comment: ""))", for: .normal)
             UserDefaults.standard.set(false, forKey: userDefaultsKey)
@@ -216,6 +230,10 @@ class MapViewController: UIViewController {
                         print("Document successfully updated")
                     }
             }
+            
+            //Analytics
+            let parameters = ["Email" : UserDefaults.standard.object(forKey: "Email")]
+            Analytics.logEvent("stoppedTrackingLocation", parameters: parameters)
         }
     }
     

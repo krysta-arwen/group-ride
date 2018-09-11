@@ -38,6 +38,9 @@ class LogInViewController: UIViewController {
     @IBAction func logInButtonTapped(_ sender: Any) {
         guard let email = emailTextField.text, let password = passwordTextField.text, email.count > 0, password.count > 0 else {
             self.showAlert(message: "\(NSLocalizedString("emailAndPasswordEntry", comment: ""))")
+            
+            let parameters = [String : Any]()
+            Analytics.logEvent("missingLogInInfo", parameters: parameters)
             return
         }
         
@@ -45,12 +48,21 @@ class LogInViewController: UIViewController {
             if let error = error {
                 if error._code == AuthErrorCode.userNotFound.rawValue {
                     self.showAlert(message: "\(NSLocalizedString("noUsers", comment: ""))")
+                    
+                    let parameters = ["Error" : error._code]
+                    Analytics.logEvent("noUserWithEmail", parameters: parameters)
                 } else if error._code == AuthErrorCode.wrongPassword.rawValue {
                     self.showAlert(message: "\(NSLocalizedString("incorrectLogIn", comment: ""))")
+                    
+                    let parameters = ["Error" : error._code]
+                    Analytics.logEvent("wrongEmailOrPassword", parameters: parameters)
                 } else {
                     self.showAlert(message: "Error: \(error.localizedDescription)")
                     let castedError = error as NSError
                     let firebaseError = AuthErrorCode(rawValue: castedError.code)
+                   
+                    let parameters = ["Error" : firebaseError]
+                    Analytics.logEvent("miscellaneousLogInError", parameters: parameters)
                     print(castedError.code)
                 }
                 print(error.localizedDescription)
@@ -62,7 +74,11 @@ class LogInViewController: UIViewController {
                 UserDefaults.standard.set(user.uid as String, forKey: "uid")
                 UserDefaults.standard.set(user.displayName as! String, forKey: "Username")
                 UserDefaults.standard.set(true, forKey: "LoggedIn")
+                UserDefaults.standard.set(user.email as! String, forKey: "Email")
                 UserDefaults.standard.synchronize()
+                
+                let parameters = ["Email" : user.email]
+                Analytics.logEvent("logInSuccessful", parameters: parameters)
                 self.performSegue(withIdentifier: "ShowMapFromLogIn", sender: nil)
             }
         }
