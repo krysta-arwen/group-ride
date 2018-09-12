@@ -47,6 +47,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
         //Trim profile picture
         profilePictureView.layer.cornerRadius = profilePictureView.frame.height / 2.0
         profilePictureView.clipsToBounds = true
+        setProfilePicture()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -59,7 +60,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
     
     @objc func keyboardWillShow(notification: NSNotification) {
         //Move view up when keyboard will show
-        self.view.frame.origin.y = -100
+        self.view.frame.origin.y = -150
     }
     
     @objc func keyboardHidden(notification: NSNotification) {
@@ -114,6 +115,15 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    func setProfilePicture() {
+        if let user = Auth.auth().currentUser {
+            let storageRef = Storage.storage().reference()
+            let filePath = user.uid
+            let reference = storageRef.child(filePath)
+            profilePictureView.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "defaultProfilePicture"))
+        }
     }
     
     //Check status to access camera
