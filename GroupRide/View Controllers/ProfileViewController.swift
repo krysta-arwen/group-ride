@@ -170,8 +170,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     
                     //Remove ride from collection
                     db.collection("users").document(uid).updateData([
-                        "ride": FieldValue.delete(),
-                        "username": FieldValue.delete()
+                        "ride": FieldValue.delete()
                     ]) { err in
                         if let err = err {
                             print("Error updating document: \(err)")

@@ -6,7 +6,8 @@
   "data" : [
     {
       "idiom" : "universal",
-      "filename" : "iTunesArtwork@2x"
+      "filename" : "appIcon2.png",
+      "universal-type-identifier" : "public.png"
     }
   ]
 }

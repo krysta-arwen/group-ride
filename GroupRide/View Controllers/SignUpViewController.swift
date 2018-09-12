@@ -9,17 +9,23 @@
 import UIKit
 import FirebaseAuth
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var ref: DocumentReference!
     let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        emailField.delegate = self
+        usernameField.delegate = self
+        passwordField.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -59,8 +65,19 @@ class SignUpViewController: UIViewController {
                 return
         }
         
+        var editedEmail = email.trimmingCharacters(in: .whitespacesAndNewlines)
+        editedEmail = email.lowercased()
+        var editedUsername = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        editedUsername = editedUsername.lowercased()
+        
+        activityIndicator.startAnimating()
+        signUpButton.isEnabled = false
+        
         //Create user with Firebase
-        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+        Auth.auth().createUser(withEmail: editedEmail, password: password) { (user, error) in
+            self.activityIndicator.stopAnimating()
+            self.signUpButton.isEnabled = true
+            
             if let error = error {
                 if error._code == AuthErrorCode.invalidEmail.rawValue {
                     self.showAlert(message: "\(NSLocalizedString("invalidEmail", comment: ""))")
@@ -83,7 +100,7 @@ class SignUpViewController: UIViewController {
             }
             
             if let user = Auth.auth().currentUser {
-                self.setUserName(user: user, name: name)
+                self.setUserName(user: user, name: editedUsername)
                 UserDefaults.standard.set(name as String, forKey: "Username")
                 UserDefaults.standard.set(user.uid as String, forKey: "uid")
                 UserDefaults.standard.set(user.email as! String, forKey: "Email")
@@ -91,7 +108,7 @@ class SignUpViewController: UIViewController {
                                 
                 //Save profile to user collection
                 self.db.collection("users").document(user.uid).setData([
-                    "username": name,
+                    "username": editedUsername,
                     "email": email,
                     "uid": Auth.auth().currentUser?.uid
                 ]) { error in
@@ -129,6 +146,21 @@ class SignUpViewController: UIViewController {
         let alertController = UIAlertController(title: "\(NSLocalizedString("signUp", comment: ""))", message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+        // Try to find next responder
+        let nextResponder = textField.superview?.viewWithTag(nextTag) as UIResponder?
+        
+        if nextResponder != nil {
+            nextResponder?.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+            signUpTapped(signUpButton)
+        }
+        
+        return false
     }
 
 }

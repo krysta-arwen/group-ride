@@ -60,11 +60,15 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
     
     @objc func keyboardWillShow(notification: NSNotification) {
         //Move view up when keyboard will show
-        self.view.frame.origin.y = -150
+        let userInfo = notification.userInfo ?? [:]
+        let keyboardFrame = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        let height = keyboardFrame.height + 20
+        editTableView.keyboardRaised(height: height)
+
     }
     
     @objc func keyboardHidden(notification: NSNotification) {
-        self.view.frame.origin.y = 0
+        editTableView.keyboardClosed()
     }
     
     @IBAction func editButtonTapped(_ sender: UIButton) {
@@ -358,6 +362,19 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44.0;
+    }
+}
+
+extension UITableView {
+    func keyboardRaised(height: CGFloat){
+        self.contentInset.bottom = height
+        self.scrollIndicatorInsets.bottom = height
+    }
+    
+    func keyboardClosed(){
+        self.contentInset.bottom = 0
+        self.scrollIndicatorInsets.bottom = 0
+        self.scrollRectToVisible(CGRect.zero, animated: true)
     }
 }
 

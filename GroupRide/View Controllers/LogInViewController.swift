@@ -9,13 +9,18 @@
 import UIKit
 import FirebaseAuth
 
-class LogInViewController: UIViewController {
+class LogInViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var logInButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
                 
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -44,7 +49,16 @@ class LogInViewController: UIViewController {
             return
         }
         
-        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+        var editedEmail = email.trimmingCharacters(in: .whitespacesAndNewlines)
+        editedEmail = email.lowercased()
+        
+        activityIndicator.startAnimating()
+        logInButton.isEnabled = false
+        
+        Auth.auth().signIn(withEmail: editedEmail, password: password) { (user, error) in
+            self.activityIndicator.stopAnimating()
+            self.logInButton.isEnabled = true
+            
             if let error = error {
                 if error._code == AuthErrorCode.userNotFound.rawValue {
                     self.showAlert(message: "\(NSLocalizedString("noUsers", comment: ""))")
@@ -88,5 +102,20 @@ class LogInViewController: UIViewController {
         let alertController = UIAlertController(title: "\(NSLocalizedString("logIn", comment: ""))", message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+        // Try to find next responder
+        let nextResponder = textField.superview?.viewWithTag(nextTag) as UIResponder?
+        
+        if nextResponder != nil {
+            nextResponder?.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+            logInButtonTapped(logInButton)
+        }
+        
+        return false
     }
 }

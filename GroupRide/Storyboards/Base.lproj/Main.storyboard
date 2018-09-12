@@ -529,7 +529,7 @@
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            <textInputTraits key="textInputTraits"/>
                                                         </textView>
                                                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFm-tq-pln">
                                                             <rect key="frame" x="150" y="66.5" width="25" height="12"/>
@@ -690,18 +690,18 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="email"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="email"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Peo-pf-GFN">
+                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Peo-pf-GFN">
                                         <rect key="frame" x="0.0" y="53" width="240" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="XAN-EA-zWH"/>
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mxq-Vx-3Mc">
+                                    <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mxq-Vx-3Mc">
                                         <rect key="frame" x="0.0" y="106" width="240" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="2D0-y0-8fb"/>
@@ -731,19 +731,26 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="aMo-pX-yEZ">
+                                <rect key="frame" x="142" y="426" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="7Tf-RH-Sqg" firstAttribute="centerX" secondItem="J49-5s-Isb" secondAttribute="centerX" id="3dv-aW-rRM"/>
                             <constraint firstItem="7Tf-RH-Sqg" firstAttribute="centerY" secondItem="J49-5s-Isb" secondAttribute="centerY" id="54F-Lx-DqS"/>
+                            <constraint firstItem="aMo-pX-yEZ" firstAttribute="top" secondItem="7Tf-RH-Sqg" secondAttribute="bottom" constant="40" id="6MI-nW-cmC"/>
+                            <constraint firstItem="aMo-pX-yEZ" firstAttribute="centerX" secondItem="J49-5s-Isb" secondAttribute="centerX" id="Cv7-sa-o2P"/>
                             <constraint firstItem="7Tf-RH-Sqg" firstAttribute="leading" secondItem="8r4-aN-zXu" secondAttribute="leading" constant="40" id="GSQ-nX-sM0"/>
                             <constraint firstItem="8r4-aN-zXu" firstAttribute="trailing" secondItem="7Tf-RH-Sqg" secondAttribute="trailing" constant="40" id="P8u-fi-CHT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8r4-aN-zXu"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="aMo-pX-yEZ" id="bXy-pZ-VSm"/>
                         <outlet property="emailField" destination="oCT-zY-RdQ" id="mMA-6g-fKm"/>
                         <outlet property="passwordField" destination="Mxq-Vx-3Mc" id="QgZ-Qo-acv"/>
+                        <outlet property="signUpButton" destination="opd-lh-AqP" id="6Dz-De-Oy0"/>
                         <outlet property="usernameField" destination="Peo-pf-GFN" id="dxV-CX-1DG"/>
                         <segue destination="49e-Tb-3d3" kind="show" identifier="ShowMapFromSignUp" id="ulb-eP-rey"/>
                     </connections>
@@ -770,9 +777,9 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" textContentType="email"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="email"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lgi-vF-L9o">
+                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lgi-vF-L9o">
                                         <rect key="frame" x="0.0" y="53" width="240" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="oJO-9w-LcL"/>
@@ -802,18 +809,26 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="RZ2-L0-TaD">
+                                <rect key="frame" x="142" y="399.5" width="37" height="37"/>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="RZ2-L0-TaD" firstAttribute="top" secondItem="whC-yE-186" secondAttribute="bottom" constant="40" id="E5C-me-S0L"/>
                             <constraint firstItem="whC-yE-186" firstAttribute="centerY" secondItem="ejy-mE-eFg" secondAttribute="centerY" id="NGi-rP-jze"/>
                             <constraint firstItem="whC-yE-186" firstAttribute="leading" secondItem="NFl-MP-M9p" secondAttribute="leading" constant="40" id="Prw-7r-j2L"/>
+                            <constraint firstItem="RZ2-L0-TaD" firstAttribute="centerX" secondItem="ejy-mE-eFg" secondAttribute="centerX" id="juV-De-kgu"/>
                             <constraint firstItem="NFl-MP-M9p" firstAttribute="trailing" secondItem="whC-yE-186" secondAttribute="trailing" constant="40" id="scV-zL-qjn"/>
                             <constraint firstItem="whC-yE-186" firstAttribute="centerX" secondItem="ejy-mE-eFg" secondAttribute="centerX" id="vxM-DS-6Yf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NFl-MP-M9p"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="RZ2-L0-TaD" id="qfi-wR-ssS"/>
                         <outlet property="emailTextField" destination="Rev-aH-4hd" id="zfr-G0-4PH"/>
+                        <outlet property="logInButton" destination="IKL-Hb-8e2" id="YTt-oo-VhV"/>
                         <outlet property="passwordTextField" destination="Lgi-vF-L9o" id="ixR-I3-RKu"/>
                         <segue destination="49e-Tb-3d3" kind="show" identifier="ShowMapFromLogIn" id="GRF-EQ-RZ4"/>
                     </connections>
@@ -919,6 +934,6 @@
         <image name="profileIcon" width="23" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ulb-eP-rey"/>
+        <segue reference="GRF-EQ-RZ4"/>
     </inferredMetricsTieBreakers>
 </document>

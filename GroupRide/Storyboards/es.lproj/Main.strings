@@ -85,3 +85,6 @@
 
 /* Class = "UILabel"; text = "Wed"; ObjectID = "wU5-qe-hz7"; */
 "wU5-qe-hz7.text" = "Mié";
+
+/* Class = "UIButton"; text = "Edit"; ObjectID = "oyA-c3-Nmm" */
+"oyA-c3-Nmm.normalTitle" = "Editar";
