@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import Alamofire
 import FirebaseUI
+import Geofirestore
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate {
 
@@ -158,8 +159,36 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         do {
             try Auth.auth().signOut()
             
+            if UserDefaults.standard.bool(forKey: "TrackingLocation") {
+                let geoFirestoreRef = Firestore.firestore().collection("userLocations")
+                let geoFirestore = GeoFirestore(collectionRef: geoFirestoreRef)
+                let db = Firestore.firestore()
+                
+                if let uid = UserDefaults.standard.string(forKey: "uid") {
+                    //Remove location from collection
+                    geoFirestore.removeLocation(forDocumentWithID: uid)
+                    
+                    //Remove ride from collection
+                    db.collection("users").document(uid).updateData([
+                        "ride": FieldValue.delete(),
+                        "username": FieldValue.delete()
+                    ]) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            print("Document successfully updated")
+                        }
+                    }
+                    
+                    //Analytics
+                    let parameters = ["Email" : UserDefaults.standard.object(forKey: "Email")]
+                    Analytics.logEvent("stoppedTrackingLocation", parameters: parameters)
+                }
+                
+                UserDefaults.standard.set(false, forKey: "TrackingLocation")
+            }
+            
             UserDefaults.standard.set(false, forKey: "LoggedIn")
-            UserDefaults.standard.set(false, forKey: "TrackingLocation")
             UserDefaults.standard.removeObject(forKey: "uid")
             UserDefaults.standard.removeObject(forKey: "Username")
             UserDefaults.standard.removeObject(forKey: "Ride")

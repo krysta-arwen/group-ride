@@ -97,8 +97,6 @@ class SignUpViewController: UIViewController {
                 ]) { error in
                     if let error = error {
                         print("Error adding document: \(error)")
-                    } else {
-                        print("Document added with ID: \(self.ref!.documentID)")
                     }
                 }
             }

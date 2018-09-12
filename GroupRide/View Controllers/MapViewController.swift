@@ -39,8 +39,9 @@ class MapViewController: UIViewController {
         //Set up location manager
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.startUpdatingLocation()
         
         //Round button
         locationButton.layer.cornerRadius = 5
@@ -181,8 +182,9 @@ class MapViewController: UIViewController {
             
             //Save rider's name and ride's name
             db.collection("users").document(uid).setData([
-                "ride" : rideName
-            ], merge: true) { err in
+                "ride" : rideName,
+                "username" : UserDefaults.standard.string(forKey: "Username")
+            ]) { err in
                 if let err = err {
                     print("Error writing document: \(err)")
                 } else {
@@ -234,6 +236,8 @@ class MapViewController: UIViewController {
             //Analytics
             let parameters = ["Email" : UserDefaults.standard.object(forKey: "Email")]
             Analytics.logEvent("stoppedTrackingLocation", parameters: parameters)
+            
+            locationManager.stopUpdatingLocation()
         }
     }
     
@@ -251,8 +255,14 @@ class MapViewController: UIViewController {
             let entryQueryHandle = circleQuery.observe(.documentEntered, with: { (key, location) in
                 if key != self.uid {
                     let bikeMarker = GMSMarker()
-//                    bikeMarker.title = self.getRiderName(uid: key!)
-//                    bikeMarker.snippet = self.getRideName(uid: key!)
+                    bikeMarker.icon = #imageLiteral(resourceName: "mapIcon")
+                    self.getRideName(uid: key!, completion: { (ride) in
+                        bikeMarker.title = ride
+                    })
+                    
+                    self.getRiderName(uid: key!, completion: { (rider) in
+                        bikeMarker.snippet = rider
+                    })
                     bikeMarker.userData = key
                     bikeMarker.position = CLLocationCoordinate2D(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
                     bikeMarker.map = self.mapView
@@ -293,8 +303,14 @@ class MapViewController: UIViewController {
                     
                     //Add new marker
                     let bikeMarker = GMSMarker()
-//                    bikeMarker.snippet = self.getRiderName(uid: key!)
-//                    bikeMarker.title = self.getRideName(uid: key!)
+                    bikeMarker.icon = #imageLiteral(resourceName: "mapIcon")
+                    self.getRideName(uid: key!, completion: { (ride) in
+                        bikeMarker.title = ride
+                    })
+                    
+                    self.getRiderName(uid: key!, completion: { (rider) in
+                        bikeMarker.snippet = rider
+                    })
                     bikeMarker.userData = key
                     bikeMarker.position = CLLocationCoordinate2D(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
                     bikeMarker.map = self.mapView
@@ -305,9 +321,9 @@ class MapViewController: UIViewController {
         
     }
     
-    func getRideName(uid: String) -> String {
+    func getRideName(uid: String, completion: @escaping (_ text: String) -> Void) {
         var ride = "\(NSLocalizedString("noRideProvided", comment: ""))"
-        let docRef = db.collection("userLocations").document(uid)
+        let docRef = db.collection("users").document(uid)
         
         docRef.getDocument { (document, error) in
             guard let document = document else {
@@ -315,15 +331,14 @@ class MapViewController: UIViewController {
                 return
             }
             
-            let dataDescription = document.data()
-            print(dataDescription!["ride"])
-            ride = dataDescription!["ride"] as! String
+            if let dataDescription = document.data() {
+                ride = dataDescription["ride"] as! String
+                completion(ride)
+            }
         }
-        
-        return ride
     }
     
-    func getRiderName(uid: String) -> String {
+    func getRiderName(uid: String, completion: @escaping (_ text: String) -> Void) {
         var rider = "\(NSLocalizedString("noUsernameProvided", comment: ""))"
         let docRef = db.collection("users").document(uid)
         
@@ -335,12 +350,11 @@ class MapViewController: UIViewController {
             
             if let dataDescription = document.data() {
                 rider = dataDescription["username"] as! String
+                completion(rider)
             } else {
                 print("Document does not exist in cache")
             }
         }
-        
-        return rider
     }
 }
 
@@ -389,8 +403,12 @@ extension MapViewController: CLLocationManagerDelegate {
             queryAdded = true
         }
 
-        mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+        if trackingLocation() {
+            geoFirestore.setLocation(location: location, forDocumentWithID: uid!)
+        } else {
+            locationManager.startUpdatingLocation()
+        }
         
-        locationManager.stopUpdatingLocation()
+        mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
     }
 }

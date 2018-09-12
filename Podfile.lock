@@ -114,6 +114,7 @@ PODS:
     - gRPC-Core (= 1.14.1)
     - gRPC-RxLibrary (= 1.14.1)
   - GTMSessionFetcher/Core (1.2.0)
+  - Instabug (8.0.8)
   - JTAppleCalendar (7.1.5)
   - Kanna (4.0.0)
   - leveldb-library (1.20)
@@ -132,6 +133,7 @@ DEPENDENCIES:
   - FirebaseUI/Storage
   - Geofirestore
   - GoogleMaps
+  - Instabug
   - JTAppleCalendar
   - Kanna
 
@@ -158,6 +160,7 @@ SPEC REPOS:
     - gRPC-ProtoRPC
     - gRPC-RxLibrary
     - GTMSessionFetcher
+    - Instabug
     - JTAppleCalendar
     - Kanna
     - leveldb-library
@@ -187,6 +190,7 @@ SPEC CHECKSUMS:
   gRPC-ProtoRPC: 78f976fc6a1eafc0e1f4965c255c313aa0859b1e
   gRPC-RxLibrary: c4c826507ad3c8c8fab6887f153938eb04b86d59
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
+  Instabug: 408cf807f28ebe18a24e4db0900c5b66dc809f6b
   JTAppleCalendar: 2d4f974f9f3c8b4964d51ca1f6e004883c031fbe
   Kanna: d5ae2a26472f7e7a474e7f36a9cd8aa2c8c63ad3
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
@@ -194,6 +198,6 @@ SPEC CHECKSUMS:
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
 
-PODFILE CHECKSUM: 48b9889db80509654f32921195b7645fae3d31a5
+PODFILE CHECKSUM: 5923c75b793102e9a03aade3e18f9ea1c125bee4
 
 COCOAPODS: 1.5.3
