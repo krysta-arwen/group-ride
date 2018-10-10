@@ -345,7 +345,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="oIZ-ZY-XfW">
                                 <rect key="frame" x="0.0" y="80" width="320" height="439"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfilePicture" translatesAutoresizingMaskIntoConstraints="NO" id="zmK-jB-BCw">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfilePicture" translatesAutoresizingMaskIntoConstraints="NO" id="zmK-jB-BCw">
                                         <rect key="frame" x="97.5" y="0.0" width="125" height="125"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="125" id="bHa-zX-BLg"/>
@@ -690,7 +690,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="email"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                                     </textField>
                                     <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Peo-pf-GFN">
                                         <rect key="frame" x="0.0" y="53" width="240" height="45"/>
@@ -928,12 +928,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ProfilePicture" width="300" height="271"/>
         <image name="calendarIcon" width="23" height="23"/>
         <image name="defaultProfilePicture" width="300" height="300"/>
         <image name="mapMarker" width="23" height="23"/>
         <image name="profileIcon" width="23" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GRF-EQ-RZ4"/>
+        <segue reference="ulb-eP-rey"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -52,7 +52,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBAction func signUpTapped(_ sender: Any) {
         //Check that fields aren't empty
         guard let name = usernameField.text,
-            let email = emailField.text,
+            let email: String = emailField.text,
             let password = passwordField.text,
             name.count > 0,
             email.count > 0,
@@ -67,6 +67,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         var editedEmail = email.trimmingCharacters(in: .whitespacesAndNewlines)
         editedEmail = email.lowercased()
+        print(editedEmail)
         var editedUsername = name.trimmingCharacters(in: .whitespacesAndNewlines)
         editedUsername = editedUsername.lowercased()
         
@@ -109,7 +110,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 //Save profile to user collection
                 self.db.collection("users").document(user.uid).setData([
                     "username": editedUsername,
-                    "email": email,
+                    "email": editedEmail,
                     "uid": Auth.auth().currentUser?.uid
                 ]) { error in
                     if let error = error {

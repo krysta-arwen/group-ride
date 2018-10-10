@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>5</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -27,16 +27,16 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>In order to take your profile picture, Ride Chaser needs permission to access your camera.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Ride Chaser requires your location in order to find nearby rides and track your ride.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Ride Chaser requires your location in order to find nearby rides and track your ride.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Ride Chaser requires your location in order to find nearby rides and track your ride.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Ride Chaser would like access to you camera.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Ride Chaser would like access to your camera roll.</string>
+	<string>In order to chose your profile picture, Ride Chaser needs permission to access your camera roll.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
@@ -62,8 +62,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
@@ -72,7 +70,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>location when </key>
-	<string></string>
 </dict>
 </plist>

@@ -11,7 +11,6 @@ import GoogleMaps
 import CoreData
 import FirebaseAuth
 import Geofirestore
-import Instabug
 
 let googleApiKey = "AIzaSyB7Gkb2dDegsjtXev88uggqOQVT2vwgnfM"
 
@@ -23,9 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         GMSServices.provideAPIKey(googleApiKey)
-        
-        Instabug.start(withToken: "99176244f3189b7fbbd40ccd1170f161", invocationEvents: [.shake, .screenshot])
-        
+                
         //Configure Firebase
         FirebaseApp.configure()
         let db = Firestore.firestore()

@@ -29,6 +29,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         //Trim profile picture
         setProfilePicture()
+//        profilePicture.image = #imageLiteral(resourceName: "ProfilePicture")
         profilePicture.layer.cornerRadius = profilePicture.frame.height / 2.0
         profilePicture.clipsToBounds = true
         

@@ -91,6 +91,11 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITableV
         alertController.addAction(cameraButton)
         alertController.addAction(cancelButton)
         
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = sender
+            popoverController.sourceRect = sender.bounds
+        }
+        
         self.navigationController!.present(alertController, animated: true, completion: nil)
     }
     

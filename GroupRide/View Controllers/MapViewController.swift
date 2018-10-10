@@ -328,11 +328,12 @@ class MapViewController: UIViewController {
         docRef.getDocument { (document, error) in
             guard let document = document else {
                 print("No document returned")
+                completion(ride)
                 return
             }
             
-            if let dataDescription = document.data() {
-                ride = dataDescription["ride"] as! String
+            if let dataDescription = document.data(), let rideName = dataDescription["ride"] {
+                ride = rideName as! String
                 completion(ride)
             }
         }
@@ -345,11 +346,12 @@ class MapViewController: UIViewController {
         docRef.getDocument { (document, error) in
             guard let document = document else {
                 print("No document returned")
+                completion(rider)
                 return
             }
             
-            if let dataDescription = document.data() {
-                rider = dataDescription["username"] as! String
+            if let dataDescription = document.data(), let riderName = dataDescription["username"]{
+                rider = riderName as! String
                 completion(rider)
             } else {
                 print("Document does not exist in cache")
@@ -406,9 +408,8 @@ extension MapViewController: CLLocationManagerDelegate {
         if trackingLocation() {
             geoFirestore.setLocation(location: location, forDocumentWithID: uid!)
         } else {
-            locationManager.startUpdatingLocation()
+            mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+            locationManager.stopUpdatingLocation()
         }
-        
-        mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
     }
 }
